@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float speed;
     public float jumpForce;
     public Animator animator;
-
+    public SpriteRenderer sr;
     public Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -30,18 +30,20 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-            animator.SetBool("isRunning", true);
+            isRunning = true;
+            sr.flipX = true;
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-            animator.SetBool("isRunning", true);
+            isRunning = true;
+            sr.flipX = false;
+
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             rb.AddForce(Vector2.up * jumpForce);
         }
         animator.SetBool("isRunning", isRunning);
-
     }
 }
