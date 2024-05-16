@@ -6,24 +6,22 @@ public class Player : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
-    public Animator animator;
+    public Animator anim;
     public SpriteRenderer sr;
     public Rigidbody2D rb;
-
-    // Start is called before the first frame update
+    bool isGrounded;
+    
     void Start()
     {
-
+        isGrounded = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Movement();
-
     }
 
-    void Movement()
+    void Movement()   //Character movement class
     {
         bool isRunning = false;
 
@@ -40,10 +38,24 @@ public class Player : MonoBehaviour
             sr.flipX = false;
 
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
-            rb.AddForce(Vector2.up * jumpForce);
+            if(isGrounded)
+            {
+                rb.AddForce(Vector2.up * jumpForce);
+                isGrounded = false;   
+            }
         }
-        animator.SetBool("isRunning", isRunning);
+
+        anim.SetBool("isRunning", isRunning);
+
+    }
+
+    void OnCollisionEnter2D(Collision2D col)  //Checks characters collisions
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
     }
 }
