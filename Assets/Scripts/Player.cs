@@ -25,17 +25,23 @@ public class Player : MonoBehaviour
 
     void Movement()
     {
+        bool isRunning = false;
+
         if (Input.GetKey(KeyCode.A))
         {
             transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+            animator.SetBool("isRunning", true);
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+            animator.SetBool("isRunning", true);
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
             rb.AddForce(Vector2.up * jumpForce);
         }
+        animator.SetBool("isRunning", isRunning);
+
     }
 }
