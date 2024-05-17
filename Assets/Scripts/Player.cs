@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 public class Player : MonoBehaviour
 {
+    public TMPro.TextMeshProUGUI gameOverText;
     public float speed;
     public float jumpForce;
     public Animator anim;
@@ -14,17 +14,23 @@ public class Player : MonoBehaviour
     public Image[] hearts;
     public int maxHealth;
     int currentHealth;
-    
+    bool isGameOver = false;
+
     void Start()
     {
         isGrounded = true;
         currentHealth = maxHealth;
-        getHealth();
+        gameOverText.gameObject.SetActive(false); // Hide the Game Over text
     }
 
     void Update()
     {
         Movement();
+        checkHealthStatus();
+        if (isGameOver)
+        {
+            return;
+        }
     }
 
     void Movement()   //Character movement class
@@ -46,10 +52,10 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.W))
         {
-            if(isGrounded)
+            if (isGrounded)
             {
                 rb.AddForce(Vector2.up * jumpForce);
-                isGrounded = false;   
+                isGrounded = false;
             }
         }
 
@@ -63,16 +69,30 @@ public class Player : MonoBehaviour
         {
             isGrounded = true;
         }
+        // Falling reduces the health logic
+        if (col.gameObject.tag == "Death")
+        {
+            // Reduce current health
+            currentHealth -= 10; // or any value you want
+
+            // Check if health is 0 or less, then game over
+            if (currentHealth <= 0)
+            {
+                isGameOver = true;
+                gameOverText.text = "Game Over";
+                gameOverText.gameObject.SetActive(true); // Show the Game Over text
+            }
+        }
     }
 
-    void getHealth()
+    void checkHealthStatus()
     {
-        for(int i = 0; i <= hearts.Length - 1; i++)
+        for (int i = 0; i < hearts.Length; i++)
         {
             hearts[i].gameObject.SetActive(false);
         }
 
-        for(int i=0; i <= currentHealth; i++)
+        for (int i = 0; i < currentHealth; i++)
         {
             hearts[i].gameObject.SetActive(true);
         }
