@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class Player : MonoBehaviour
 {
     public TMPro.TextMeshProUGUI gameOverText;
@@ -81,10 +83,18 @@ public class Player : MonoBehaviour
                 isGameOver = true;
                 gameOverText.text = "Game Over";
                 gameOverText.gameObject.SetActive(true); // Show the Game Over text
+                StartCoroutine(RestartGameAfterDelay(5)); // Wait for 5 seconds and restart the game
+
             }
         }
     }
-
+    IEnumerator RestartGameAfterDelay(float delay)
+    {
+        Time.timeScale = 0; // Pause the game
+        yield return new WaitForSecondsRealtime(delay); // Wait for the specified delay
+        Time.timeScale = 1; // Unpause the game
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Restart the game
+    }
     void checkHealthStatus()
     {
         for (int i = 0; i < hearts.Length; i++)
