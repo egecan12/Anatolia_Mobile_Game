@@ -1184,6 +1184,7 @@ Transform:
   m_Children:
   - {fileID: 239152647}
   - {fileID: 1004842700}
+  - {fileID: 1657742812}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1143221909
@@ -1904,7 +1905,7 @@ GameObject:
   - component: {fileID: 1522203428}
   - component: {fileID: 1522203427}
   m_Layer: 0
-  m_Name: Ground1 (1)
+  m_Name: Ground1
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2213,8 +2214,8 @@ Transform:
   m_GameObject: {fileID: 1657742811}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10.500719, y: -2.6343267, z: -0.07072792}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.263399, y: 2.2445915, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 876673941}
@@ -2241,7 +2242,7 @@ Transform:
   - {fileID: 1573880826}
   - {fileID: 1316366349}
   - {fileID: 2114626304}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1058477477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697340683
 GameObject:
@@ -2256,7 +2257,7 @@ GameObject:
   - component: {fileID: 1697340686}
   - component: {fileID: 1697340685}
   m_Layer: 0
-  m_Name: Ground1 (2)
+  m_Name: LeftWall
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2329,7 +2330,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697340683}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2997,5 +2998,4 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1886606389}
   - {fileID: 1211512394}
-  - {fileID: 1657742812}
   - {fileID: 1058477477}
