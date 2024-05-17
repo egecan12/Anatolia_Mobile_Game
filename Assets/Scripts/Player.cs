@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,10 +11,15 @@ public class Player : MonoBehaviour
     public SpriteRenderer sr;
     public Rigidbody2D rb;
     bool isGrounded;
+    public Image[] hearts;
+    public int maxHealth;
+    int currentHealth;
     
     void Start()
     {
         isGrounded = true;
+        currentHealth = maxHealth;
+        getHealth();
     }
 
     void Update()
@@ -56,6 +62,19 @@ public class Player : MonoBehaviour
         if (col.gameObject.tag == "Ground")
         {
             isGrounded = true;
+        }
+    }
+
+    void getHealth()
+    {
+        for(int i = 0; i <= hearts.Length - 1; i++)
+        {
+            hearts[i].gameObject.SetActive(false);
+        }
+
+        for(int i=0; i <= currentHealth; i++)
+        {
+            hearts[i].gameObject.SetActive(true);
         }
     }
 }
