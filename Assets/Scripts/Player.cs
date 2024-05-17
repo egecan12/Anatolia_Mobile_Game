@@ -28,10 +28,18 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
-        checkHealthStatus();
+        displayHealthStatus();
         if (isGameOver)
         {
             return;
+        }
+        if (currentHealth <= 0)
+        {
+            isGameOver = true;
+            gameOverText.text = "Game Over";
+            gameOverText.gameObject.SetActive(true); // Show the Game Over text
+            StartCoroutine(RestartGameAfterDelay(5)); // Wait for 5 seconds and restart the game
+
         }
     }
 
@@ -78,15 +86,9 @@ public class Player : MonoBehaviour
             currentHealth -= 10; // or any value you want
 
             // Check if health is 0 or less, then game over
-            if (currentHealth <= 0)
-            {
-                isGameOver = true;
-                gameOverText.text = "Game Over";
-                gameOverText.gameObject.SetActive(true); // Show the Game Over text
-                StartCoroutine(RestartGameAfterDelay(5)); // Wait for 5 seconds and restart the game
 
-            }
         }
+
     }
     IEnumerator RestartGameAfterDelay(float delay)
     {
@@ -95,7 +97,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 1; // Unpause the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Restart the game
     }
-    void checkHealthStatus()
+    void displayHealthStatus()
     {
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -106,5 +108,9 @@ public class Player : MonoBehaviour
         {
             hearts[i].gameObject.SetActive(true);
         }
+    }
+    public void ReduceHealth(int amount)
+    {
+        currentHealth -= amount;
     }
 }
