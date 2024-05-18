@@ -5,8 +5,11 @@ using UnityEngine;
 public class EnemyHomeless : MonoBehaviour
 {
     public float speed = 2.0f; // Speed at which the enemy moves towards the player
-    private Transform player; // Reference to the player's position
+   // private Transform player; // Reference to the player's position
     private Animator animator; // Reference to the Animator component
+    private Player player;
+    public float attackRange = 1.0f;
+    private bool isAttacking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +18,7 @@ public class EnemyHomeless : MonoBehaviour
         GameObject playerObject = GameObject.FindWithTag("Player");
         if (playerObject != null)
         {
-            player = playerObject.transform;
+            player = playerObject.GetComponent<Player>();
         }
 
         // Get the Animator component
@@ -28,7 +31,7 @@ public class EnemyHomeless : MonoBehaviour
         // If the player is not null, move towards the player
         if (player != null)
         {
-            Vector3 direction = player.position - transform.position;
+            Vector3 direction = player.transform.position - transform.position;
             direction.Normalize();
 
             // Flip the enemy to face the player
@@ -52,6 +55,11 @@ public class EnemyHomeless : MonoBehaviour
             // If the enemy is not moving, stop the run animation
             animator.SetBool("isRunning", false);
         }
+
+        if(player != null && isAttacking)
+        {
+            player.reduceHealth(1);
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -60,13 +68,10 @@ public class EnemyHomeless : MonoBehaviour
         {
             // Start the attack animation
             animator.SetBool("isAttacking", true);
+            isAttacking = true;
         }
-        // Reduce the player's health by one
-        Player player = collision.gameObject.GetComponent<Player>();
-        if (player != null)
-        {
-            player.ReduceHealth(1);
-        }
+        
+        //Player player = collision.gameObject.GetComponent<Player>();
     }
 
     void OnCollisionExit2D(Collision2D collision)
@@ -76,6 +81,15 @@ public class EnemyHomeless : MonoBehaviour
         {
             // Stop the attack animation
             animator.SetBool("isAttacking", false);
+            isAttacking = false;
+        }
+    }
+
+    public void AttackFinished()
+    {
+        if (player != null && Vector3.Distance(transform.position, player.transform.position) < attackRange)
+        {
+            player.reduceHealth(1);
         }
     }
 }

@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     public int maxHealth;
     int currentHealth;
     bool isGameOver = false;
+    bool isImmune = false;
 
     void Start()
     {
@@ -28,18 +29,10 @@ public class Player : MonoBehaviour
     void Update()
     {
         Movement();
-        displayHealthStatus();
+        checkHealthStatus();
         if (isGameOver)
         {
             return;
-        }
-        if (currentHealth <= 0)
-        {
-            isGameOver = true;
-            gameOverText.text = "Game Over";
-            gameOverText.gameObject.SetActive(true); // Show the Game Over text
-            StartCoroutine(RestartGameAfterDelay(5)); // Wait for 5 seconds and restart the game
-
         }
     }
 
@@ -84,11 +77,7 @@ public class Player : MonoBehaviour
         {
             // Reduce current health
             currentHealth -= 10; // or any value you want
-
-            // Check if health is 0 or less, then game over
-
         }
-
     }
     IEnumerator RestartGameAfterDelay(float delay)
     {
@@ -97,7 +86,7 @@ public class Player : MonoBehaviour
         Time.timeScale = 1; // Unpause the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Restart the game
     }
-    void displayHealthStatus()
+    void checkHealthStatus()
     {
         for (int i = 0; i < hearts.Length; i++)
         {
@@ -109,8 +98,27 @@ public class Player : MonoBehaviour
             hearts[i].gameObject.SetActive(true);
         }
     }
-    public void ReduceHealth(int amount)
+    public void reduceHealth(int amount)
     {
-        currentHealth -= amount;
+        if(!isImmune)
+        {
+            currentHealth -= amount;
+            StartCoroutine(StartImmunity());
+
+            if (currentHealth <= 0)
+            {
+                isGameOver = true;
+                gameOverText.text = "Game Over";
+                gameOverText.gameObject.SetActive(true); // Show the Game Over text
+                StartCoroutine(RestartGameAfterDelay(5)); // Wait for 5 seconds and restart the game
+            }
+        }
+    }
+
+    IEnumerator StartImmunity()
+    {
+        isImmune = true;
+        yield return new WaitForSeconds(1);
+        isImmune = false;
     }
 }
