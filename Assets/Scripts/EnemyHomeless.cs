@@ -11,6 +11,7 @@ public class EnemyHomeless : MonoBehaviour
     private bool isAttacking = false;
     public float health = 1f; // The enemy's health
     private bool isDying = false; // Whether the enemy is dying
+    public EnemySpawner enemySpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -109,7 +110,8 @@ public class EnemyHomeless : MonoBehaviour
     }
 
     private void Die()
-    {
+    {   
+        enemySpawner.SpawnEnemyAfterDelay();
         isDying = true;
         animator.SetBool("isDying", true);
         StartCoroutine(DestroyAfterAnimation());
