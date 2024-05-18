@@ -51,6 +51,7 @@ public class EnemyHomeless : MonoBehaviour
         {
             Vector3 direction = player.transform.position - transform.position;
             float distanceToPlayer = direction.magnitude;
+            direction.y = 0; // This line ensures that the enemy does not move in the Y direction
             direction.Normalize();
 
             // Flip the enemy to face the player
