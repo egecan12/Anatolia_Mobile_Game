@@ -29,7 +29,21 @@ public class EnemyHomeless : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If the player is not null, move towards the player
+        enemyMovement();
+
+        if (player != null && isAttacking)
+        {
+            player.reduceHealth(1);
+        }
+        if (health <= 0f && !isDying)
+        {
+            Die();
+        }
+    }
+
+    public void enemyMovement()
+    {
+       // If the player is not null, move towards the player
         if (player != null)
         {
             Vector3 direction = player.transform.position - transform.position;
@@ -69,15 +83,6 @@ public class EnemyHomeless : MonoBehaviour
         {
             // If the enemy is not moving, stop the run animation
             animator.SetBool("isRunning", false);
-        }
-
-        if (player != null && isAttacking)
-        {
-            player.reduceHealth(1);
-        }
-        if (health <= 0f && !isDying)
-        {
-            Die();
         }
     }
     public void reduceEnemyHealth(float amount)
