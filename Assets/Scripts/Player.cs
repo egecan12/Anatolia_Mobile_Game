@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
     {
         coinCount++;
         Debug.Log(coinCount);
-        coinCountText.text = "Coins: " + coinCount; // Update the UI Text element
+        coinCountText.text = "" + coinCount; // Update the UI Text element
     }
 
 }
