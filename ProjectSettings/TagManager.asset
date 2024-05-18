@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Death
   - Enemy
+  - askGoldCloud
   layers:
   - Default
   - TransparentFX
