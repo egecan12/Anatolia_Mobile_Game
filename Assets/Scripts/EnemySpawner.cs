@@ -7,11 +7,19 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyHomelessPrefab;
     public Vector3 spawnPosition;
     public float spawnDelay = 5f; // Delay in seconds
+    public GameObject coinPrefab; // Add this line
+
 
     public void SpawnEnemy()
     {
-        // Instantiate a new EnemyHomeless prefab at the specified position
-        Instantiate(enemyHomelessPrefab, spawnPosition, Quaternion.identity);
+        GameObject enemyHomelessClone = Instantiate(enemyHomelessPrefab, spawnPosition, Quaternion.identity);
+        // Get the EnemyHomeless component of the clone
+        EnemyHomeless enemyHomeless = enemyHomelessClone.GetComponent<EnemyHomeless>();
+
+        if (enemyHomeless != null)
+        {
+            enemyHomeless.coinPrefab = coinPrefab;
+        }
     }
 
     public void SpawnEnemyAfterDelay()

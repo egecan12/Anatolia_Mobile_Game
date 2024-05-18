@@ -119,7 +119,10 @@ public class EnemyHomeless : MonoBehaviour
         if (coinPrefab != null)
         {
             // Instantiate a coin at the enemy's position when it dies
-            Instantiate(coinPrefab, transform.position, Quaternion.identity);
+            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+
+            // Attach the Coin script to the instantiated coin
+            coin.AddComponent<Coin>();
         }
         if (enemySpawner != null)
         {
