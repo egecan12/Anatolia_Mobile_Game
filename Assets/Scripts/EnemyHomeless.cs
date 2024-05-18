@@ -12,6 +12,8 @@ public class EnemyHomeless : MonoBehaviour
     public float health = 1f; // The enemy's health
     private bool isDying = false; // Whether the enemy is dying
     public EnemySpawner enemySpawner;
+    public GameObject coinPrefab; // Add this line
+
 
     // Start is called before the first frame update
     void Start()
@@ -114,6 +116,11 @@ public class EnemyHomeless : MonoBehaviour
 
     private void Die()
     {
+        if (coinPrefab != null)
+        {
+            // Instantiate a coin at the enemy's position when it dies
+            Instantiate(coinPrefab, transform.position, Quaternion.identity);
+        }
         if (enemySpawner != null)
         {
             enemySpawner.SpawnEnemyAfterDelay();
@@ -124,6 +131,7 @@ public class EnemyHomeless : MonoBehaviour
             animator.SetBool("isDying", true);
             StartCoroutine(DestroyAfterAnimation());
         }
+
         // Disable the Rigidbody
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         if (rb != null)

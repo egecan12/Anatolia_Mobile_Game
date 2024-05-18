@@ -5840,6 +5840,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2116127005154581688, guid: 646f8e9697b792f4398d217b15d4a14b, type: 3}
+      propertyPath: coinPrefab
+      value: 
+      objectReference: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}
+    - target: {fileID: 2116127005154581688, guid: 646f8e9697b792f4398d217b15d4a14b, type: 3}
       propertyPath: enemySpawner
       value: 
       objectReference: {fileID: 681475484}
