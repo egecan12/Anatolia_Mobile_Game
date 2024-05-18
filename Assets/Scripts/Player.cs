@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro; // Import the TextMeshPro namespace
 
 public class Player : MonoBehaviour
 {
-    public TMPro.TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI gameOverText;
+    public TextMeshProUGUI coinCountText; // Assign your TextMeshProUGUI object in the Unity editor
+
     public float speed;
     public float jumpForce;
     public Animator anim;
@@ -21,6 +24,8 @@ public class Player : MonoBehaviour
     bool isImmune = false;
     public float immuneTime = 2f; // The duration of the immunity and blinking effect
     public float blinkInterval = 0.1f; // The interval between each blink
+    private int coinCount = 0;
+
     void Start()
     {
 
@@ -181,6 +186,12 @@ public class Player : MonoBehaviour
                 reduceHealth(1); // replace 1 with the amount of health you want to reduce
             }
         }
+    }
+    public void IncreaseCoinCount()
+    {
+        coinCount++;
+        Debug.Log(coinCount);
+        coinCountText.text = "Coins: " + coinCount; // Update the UI Text element
     }
 
 }
