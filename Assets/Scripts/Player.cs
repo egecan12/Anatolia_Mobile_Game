@@ -12,15 +12,19 @@ public class Player : MonoBehaviour
     public Animator anim;
     public SpriteRenderer sr;
     public Rigidbody2D rb;
+    public Collider2D attackCollider;
     bool isGrounded;
     public Image[] hearts;
     public int maxHealth;
     int currentHealth;
     bool isGameOver = false;
     bool isImmune = false;
-
+    public float immuneTime = 2f; // The duration of the immunity and blinking effect
+    public float blinkInterval = 0.1f; // The interval between each blink
     void Start()
     {
+
+
         isGrounded = true;
         currentHealth = maxHealth;
         gameOverText.gameObject.SetActive(false); // Hide the Game Over text
@@ -61,6 +65,11 @@ public class Player : MonoBehaviour
                 isGrounded = false;
             }
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            StartCoroutine(AttackAnimation());
+        }
+
 
         anim.SetBool("isRunning", isRunning);
 
@@ -100,7 +109,7 @@ public class Player : MonoBehaviour
     }
     public void reduceHealth(int amount)
     {
-        if(!isImmune)
+        if (!isImmune)
         {
             currentHealth -= amount;
             StartCoroutine(StartImmunity());
@@ -112,13 +121,56 @@ public class Player : MonoBehaviour
                 gameOverText.gameObject.SetActive(true); // Show the Game Over text
                 StartCoroutine(RestartGameAfterDelay(5)); // Wait for 5 seconds and restart the game
             }
+            else
+            {
+                // Start the immunity and blinking effect
+                StartCoroutine(StartBlinking());
+            }
         }
+    }
+    IEnumerator StartBlinking()
+    {
+        isImmune = true;
+        float endTime = Time.time + immuneTime;
+        while (Time.time < endTime)
+        {
+            sr.enabled = !sr.enabled;
+            yield return new WaitForSeconds(blinkInterval);
+        }
+        sr.enabled = true;
+        isImmune = false;
     }
 
     IEnumerator StartImmunity()
     {
         isImmune = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         isImmune = false;
     }
+    IEnumerator AttackAnimation()
+    {
+        attackCollider.enabled = true;
+        anim.SetBool("isAttacking", true);
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        anim.SetBool("isAttacking", false);
+        attackCollider.enabled = false;
+
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            if (anim.GetBool("isAttacking"))
+            {
+                //Destroy(other.gameObject);
+
+            }
+            else
+            {
+                // If the player is not attacking, reduce their health
+                reduceHealth(1); // replace 1 with the amount of health you want to reduce
+            }
+        }
+    }
+
 }
