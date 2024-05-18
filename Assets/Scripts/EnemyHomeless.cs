@@ -25,6 +25,8 @@ public class EnemyHomeless : MonoBehaviour
 
         // Get the Animator component
         animator = GetComponent<Animator>();
+        // Assign a value to enemySpawner
+        enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class EnemyHomeless : MonoBehaviour
 
     public void enemyMovement()
     {
-       // If the player is not null, move towards the player
+        // If the player is not null, move towards the player
         if (player != null)
         {
             Vector3 direction = player.transform.position - transform.position;
@@ -110,11 +112,28 @@ public class EnemyHomeless : MonoBehaviour
     }
 
     private void Die()
-    {   
-        enemySpawner.SpawnEnemyAfterDelay();
+    {
+        if (enemySpawner != null)
+        {
+            enemySpawner.SpawnEnemyAfterDelay();
+        }
         isDying = true;
-        animator.SetBool("isDying", true);
-        StartCoroutine(DestroyAfterAnimation());
+        if (animator != null)
+        {
+            animator.SetBool("isDying", true);
+            StartCoroutine(DestroyAfterAnimation());
+        }
+        // Disable the Rigidbody
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.simulated = false;
+        }
+
+        // Move the enemy a little bit down in the y-axis
+        float moveDownAmount = 0.8f; // Adjust this value as needed
+        transform.position = new Vector3(transform.position.x, transform.position.y - moveDownAmount, transform.position.z);
+
     }
 
     private IEnumerator DestroyAfterAnimation()

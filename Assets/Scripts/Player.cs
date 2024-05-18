@@ -49,12 +49,22 @@ public class Player : MonoBehaviour
             transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
             isRunning = true;
             sr.flipX = true;
+            // Flip the attack collider
+            if (attackCollider.transform.localScale.x > 0)
+            {
+                attackCollider.transform.localScale = new Vector3(-attackCollider.transform.localScale.x, attackCollider.transform.localScale.y, attackCollider.transform.localScale.z);
+            }
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
             isRunning = true;
             sr.flipX = false;
+            // Flip the attack collider
+            if (attackCollider.transform.localScale.x < 0)
+            {
+                attackCollider.transform.localScale = new Vector3(-attackCollider.transform.localScale.x, attackCollider.transform.localScale.y, attackCollider.transform.localScale.z);
+            }
 
         }
         if (Input.GetKey(KeyCode.W))
