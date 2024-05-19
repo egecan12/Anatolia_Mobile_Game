@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     bool isImmune = false;
     public float immuneTime = 2f; // The duration of the immunity and blinking effect
     public float blinkInterval = 0.1f; // The interval between each blink
-    private int coinCount = 0;
+    public int coinCount = 0;
     private bool isDying = false;
     private Vector3 startPosition;
 

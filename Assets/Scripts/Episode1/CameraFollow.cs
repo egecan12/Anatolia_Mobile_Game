@@ -10,7 +10,7 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         Vector3 newPosition = transform.position;
-        newPosition.x = Mathf.Clamp(playerTransform.position.x + offset.x, -1.8f, float.MaxValue);
+        newPosition.x = Mathf.Clamp(playerTransform.position.x + offset.x, -1.8f, 16f);
         transform.position = newPosition;
     }
 }

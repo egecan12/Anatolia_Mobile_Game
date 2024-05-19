@@ -1930,7 +1930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Episode2
-  delay: 5
+  delay: 4
 --- !u!4 &1947462844
 Transform:
   m_ObjectHideFlags: 0
