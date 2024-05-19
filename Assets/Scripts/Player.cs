@@ -137,9 +137,15 @@ public class Player : MonoBehaviour
         {
             currentHealth -= amount;
             StartCoroutine(StartImmunity());
+            if (currentHealth > 0)
+            {
+                transform.position = startPosition;
+                StartCoroutine(StartBlinking());
+            }
 
 
-            if (currentHealth <= 0)
+
+            else if (currentHealth <= 0)
             {
                 isDying = true;
                 if (anim != null)
@@ -158,11 +164,7 @@ public class Player : MonoBehaviour
                 StartCoroutine(GameOverTextAfterDelay(1));
                 StartCoroutine(RestartGameAfterDelay(5)); // Wait for 5 seconds and restart the game
             }
-            else
-            {
-                // Start the immunity and blinking effect
-                StartCoroutine(StartBlinking());
-            }
+
         }
     }
     IEnumerator StartBlinking()
@@ -203,8 +205,7 @@ public class Player : MonoBehaviour
 
             }
             else
-            {      // Move the player back to the start position
-                transform.position = startPosition;
+            {
                 // If the player is not attacking, reduce their health
                 reduceHealth(1); // replace 1 with the amount of health you want to reduce
             }
