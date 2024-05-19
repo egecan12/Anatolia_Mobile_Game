@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
+
+    private Collider2D col;
+
+    void Start()
+    {
+        col = gameObject.AddComponent<BoxCollider2D>();
+        col.isTrigger = true;
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))

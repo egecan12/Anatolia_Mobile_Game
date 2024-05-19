@@ -25,11 +25,12 @@ public class Player : MonoBehaviour
     public float immuneTime = 2f; // The duration of the immunity and blinking effect
     public float blinkInterval = 0.1f; // The interval between each blink
     private int coinCount = 0;
+    private bool isDying = false;
+    private Vector3 startPosition;
 
     void Start()
     {
-
-
+        startPosition = transform.position;
         isGrounded = true;
         currentHealth = maxHealth;
         gameOverText.gameObject.SetActive(false); // Hide the Game Over text
@@ -105,10 +106,18 @@ public class Player : MonoBehaviour
     }
     IEnumerator RestartGameAfterDelay(float delay)
     {
-        Time.timeScale = 0; // Pause the game
+        //  Time.timeScale = 0; // Pause the game
         yield return new WaitForSecondsRealtime(delay); // Wait for the specified delay
-        Time.timeScale = 1; // Unpause the game
+                                                        //  Time.timeScale = 1; // Unpause the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Restart the game
+    }
+    IEnumerator GameOverTextAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay); // Wait for the specified delay
+        isGameOver = true;
+        gameOverText.text = "Game Over";
+        gameOverText.gameObject.SetActive(true); // Show the Game Over text
+
     }
     void checkHealthStatus()
     {
@@ -129,11 +138,24 @@ public class Player : MonoBehaviour
             currentHealth -= amount;
             StartCoroutine(StartImmunity());
 
+
             if (currentHealth <= 0)
             {
-                isGameOver = true;
-                gameOverText.text = "Game Over";
-                gameOverText.gameObject.SetActive(true); // Show the Game Over text
+                isDying = true;
+                if (anim != null)
+                {
+                    anim.SetBool("isDying", true);
+                }
+                if (rb != null)
+                {
+                    rb.simulated = false;
+                }
+
+                // Move the enemy a little bit down in the y-axis
+                float moveDownAmount = 0.5f; // Adjust this value as needed
+                transform.position = new Vector3(transform.position.x, transform.position.y - moveDownAmount, transform.position.z);
+
+                StartCoroutine(GameOverTextAfterDelay(1));
                 StartCoroutine(RestartGameAfterDelay(5)); // Wait for 5 seconds and restart the game
             }
             else
@@ -181,7 +203,8 @@ public class Player : MonoBehaviour
 
             }
             else
-            {
+            {      // Move the player back to the start position
+                transform.position = startPosition;
                 // If the player is not attacking, reduce their health
                 reduceHealth(1); // replace 1 with the amount of health you want to reduce
             }
