@@ -11,6 +11,9 @@ public class EnemyHomeless : MonoBehaviour
     private bool isAttacking = false;
     public float health = 1f; // The enemy's health
     private bool isDying = false; // Whether the enemy is dying
+    public EnemySpawner enemySpawner;
+    public GameObject coinPrefab; // Add this line
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +27,8 @@ public class EnemyHomeless : MonoBehaviour
 
         // Get the Animator component
         animator = GetComponent<Animator>();
+        // Assign a value to enemySpawner
+        enemySpawner = FindObjectOfType<EnemySpawner>();
     }
 
     // Update is called once per frame
@@ -43,11 +48,12 @@ public class EnemyHomeless : MonoBehaviour
 
     public void enemyMovement()
     {
-       // If the player is not null, move towards the player
+        // If the player is not null, move towards the player
         if (player != null)
         {
             Vector3 direction = player.transform.position - transform.position;
             float distanceToPlayer = direction.magnitude;
+            direction.y = 0; // This line ensures that the enemy does not move in the Y direction
             direction.Normalize();
 
             // Flip the enemy to face the player
@@ -110,9 +116,36 @@ public class EnemyHomeless : MonoBehaviour
 
     private void Die()
     {
+        if (coinPrefab != null)
+        {
+            // Instantiate a coin at the enemy's position when it dies
+            GameObject coin = Instantiate(coinPrefab, transform.position, Quaternion.identity);
+
+            // Attach the Coin script to the instantiated coin
+            coin.AddComponent<Coin>();
+        }
+        if (enemySpawner != null)
+        {
+            enemySpawner.SpawnEnemyAfterDelay();
+        }
         isDying = true;
-        animator.SetBool("isDying", true);
-        StartCoroutine(DestroyAfterAnimation());
+        if (animator != null)
+        {
+            animator.SetBool("isDying", true);
+            StartCoroutine(DestroyAfterAnimation());
+        }
+
+        // Disable the Rigidbody
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.simulated = false;
+        }
+
+        // Move the enemy a little bit down in the y-axis
+        float moveDownAmount = 0.8f; // Adjust this value as needed
+        transform.position = new Vector3(transform.position.x, transform.position.y - moveDownAmount, transform.position.z);
+
     }
 
     private IEnumerator DestroyAfterAnimation()
