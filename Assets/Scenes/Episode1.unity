@@ -2027,7 +2027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHomelessPrefab: {fileID: 2857775933902114003, guid: 646f8e9697b792f4398d217b15d4a14b, type: 3}
   spawnPosition: {x: 8, y: -3.5, z: 0}
-  spawnDelay: 0.5
+  spawnDelay: 0
   coinPrefab: {fileID: 100000, guid: 49e6ee33250214a9facc214f3a2fecb7, type: 3}
 --- !u!4 &681475485
 Transform:
@@ -5782,6 +5782,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2116127005154581688, guid: 646f8e9697b792f4398d217b15d4a14b, type: 3}
+      propertyPath: speed
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2116127005154581688, guid: 646f8e9697b792f4398d217b15d4a14b, type: 3}
       propertyPath: coinPrefab
       value: 

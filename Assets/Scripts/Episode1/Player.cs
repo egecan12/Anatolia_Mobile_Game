@@ -49,45 +49,49 @@ public class Player : MonoBehaviour
     void Movement()   //Character movement class
     {
         bool isRunning = false;
-
-        if (Input.GetKey(KeyCode.A))
+        if (!isDying)
         {
-            transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-            isRunning = true;
-            sr.flipX = true;
-            // Flip the attack collider
-            if (attackCollider.transform.localScale.x > 0)
+            if (Input.GetKey(KeyCode.A))
             {
-                attackCollider.transform.localScale = new Vector3(-attackCollider.transform.localScale.x, attackCollider.transform.localScale.y, attackCollider.transform.localScale.z);
+                transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+                isRunning = true;
+                sr.flipX = true;
+                // Flip the attack collider
+                if (attackCollider.transform.localScale.x > 0)
+                {
+                    attackCollider.transform.localScale = new Vector3(-attackCollider.transform.localScale.x, attackCollider.transform.localScale.y, attackCollider.transform.localScale.z);
+                }
             }
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-            isRunning = true;
-            sr.flipX = false;
-            // Flip the attack collider
-            if (attackCollider.transform.localScale.x < 0)
+            if (Input.GetKey(KeyCode.D))
             {
-                attackCollider.transform.localScale = new Vector3(-attackCollider.transform.localScale.x, attackCollider.transform.localScale.y, attackCollider.transform.localScale.z);
-            }
+                transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
+                isRunning = true;
+                sr.flipX = false;
+                // Flip the attack collider
+                if (attackCollider.transform.localScale.x < 0)
+                {
+                    attackCollider.transform.localScale = new Vector3(-attackCollider.transform.localScale.x, attackCollider.transform.localScale.y, attackCollider.transform.localScale.z);
+                }
 
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            if (isGrounded)
+            }
+            if (Input.GetKey(KeyCode.W))
             {
-                rb.AddForce(Vector2.up * jumpForce);
-                isGrounded = false;
+                if (isGrounded)
+                {
+                    rb.AddForce(Vector2.up * jumpForce);
+                    isGrounded = false;
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(AttackAnimation());
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StartCoroutine(AttackAnimation());
+            }
+
+
+            anim.SetBool("isRunning", isRunning);
         }
 
 
-        anim.SetBool("isRunning", isRunning);
 
     }
 
@@ -144,9 +148,11 @@ public class Player : MonoBehaviour
             }
 
 
-
+            //death
             else if (currentHealth <= 0)
             {
+                // If the player is dead, freeze the position
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 isDying = true;
                 if (anim != null)
                 {
