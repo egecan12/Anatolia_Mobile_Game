@@ -1223,7 +1223,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: b9bbdd7b058a2384e8d2349e28aa8602, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1360,7 +1360,7 @@ Transform:
   m_GameObject: {fileID: 571153200}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.25, y: -2.84, z: 0}
+  m_LocalPosition: {x: 19.65, y: -2.84, z: 0}
   m_LocalScale: {x: 4.5035, y: 4.7915, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1379,7 +1379,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a2040cc257815541beeebb7866c963f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {fileID: 1886606389}
+  ticketSellerTransform: {fileID: 571153204}
+  moveDuration: 3
+  playerBalloonTransform: {fileID: 795723818}
   player: {fileID: 1886606392}
+  additionalHeight: 8
 --- !u!1 &624988532
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,7 +2167,7 @@ GameObject:
   - component: {fileID: 795723818}
   - component: {fileID: 795723817}
   m_Layer: 0
-  m_Name: Remove background project(1)
+  m_Name: playerBalloon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2228,12 +2233,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 795723816}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.212847, y: -0.81, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 19.063429, y: 0.28, z: 0.050957013}
+  m_LocalScale: {x: 0.77019, y: 0.77019, z: 0.77019}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1566023390}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &875031412
 GameObject:
@@ -3229,7 +3234,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f1e5958cb690b0342b016d5a70818293, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3884,6 +3889,7 @@ Transform:
   - {fileID: 1546973479}
   - {fileID: 667271524}
   - {fileID: 500939394}
+  - {fileID: 795723818}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1568698496
@@ -5091,7 +5097,7 @@ Transform:
   m_GameObject: {fileID: 1790618049}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.86, y: -0.27, z: 0.050957013}
+  m_LocalPosition: {x: 1.66, y: -0.27, z: 0.050957013}
   m_LocalScale: {x: 0.3049938, y: 0.29883313, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5153,7 +5159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: f5701938fc8e9844b8c4f8b6b8d23e59, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 1
@@ -6098,7 +6104,7 @@ Transform:
   m_GameObject: {fileID: 2108639732}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.89, y: 1.8641, z: 0.050957013}
+  m_LocalPosition: {x: 3.89, y: 0.52, z: 0.050957013}
   m_LocalScale: {x: 0.33914506, y: 0.346584, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6229,6 +6235,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8971178142432963667, guid: db3d52398be36cf418d2ccc23fafb3c7, type: 3}
+      propertyPath: coinCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8971178142432963667, guid: db3d52398be36cf418d2ccc23fafb3c7, type: 3}
       propertyPath: gameOverText
       value: 
       objectReference: {fileID: 2052900641}
@@ -6355,4 +6365,3 @@ SceneRoots:
   - {fileID: 571153204}
   - {fileID: 1860553188}
   - {fileID: 1329813333}
-  - {fileID: 795723818}

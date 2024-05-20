@@ -5,16 +5,24 @@ using System.Collections;
 public class LoadSceneAfterDelay2 : MonoBehaviour
 {
     public string sceneName = "Episode2";
-    public float delay = 5f;
 
     void Start()
     {
-        StartCoroutine(LoadSceneAfterDelayCoroutine());
+        StartCoroutine(LoadAfterDelay(sceneName));
     }
 
-    IEnumerator LoadSceneAfterDelayCoroutine()
+    IEnumerator LoadAfterDelay(string sceneName)
     {
-        yield return new WaitForSeconds(delay);
+        while (true)
+        {
+            if (Input.anyKeyDown)
+            {
+                break;
+            }
+
+            yield return null;
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 }
