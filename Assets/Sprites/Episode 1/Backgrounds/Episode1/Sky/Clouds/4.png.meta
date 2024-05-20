@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c1be4a9267c7f164b93723c06a361460
+guid: 71daba2ce2e181f41a87582ca75df7b5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -134,112 +134,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: cld2_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 201
-        width: 134
-        height: 64
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d0d785e39319e3147bcb8b8fdb777db0
-      internalID: -1220419578
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cld2_1
-      rect:
-        serializedVersion: 2
-        x: 234
-        y: 148
-        width: 359
-        height: 117
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9733e621d2d022444a1a313330423470
-      internalID: -436761121
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cld2_2
-      rect:
-        serializedVersion: 2
-        x: 20
-        y: 63
-        width: 329
-        height: 129
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c47a13ac2bcdcb944baff3a612173625
-      internalID: 790188443
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cld2_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 113
-        height: 54
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8d49561fe665e2e4abfa76805527e813
-      internalID: -652329855
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: cld2_4
-      rect:
-        serializedVersion: 2
-        x: 490
-        y: 0
-        width: 103
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98c065b3972e64c4f98b7d1224fae061
-      internalID: 1106204645
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -250,12 +145,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      cld2_0: -1220419578
-      cld2_1: -436761121
-      cld2_2: 790188443
-      cld2_3: -652329855
-      cld2_4: 1106204645
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
