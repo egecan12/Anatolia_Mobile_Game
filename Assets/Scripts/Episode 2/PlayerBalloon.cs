@@ -8,14 +8,16 @@ public class BalloonControl : MonoBehaviour
     public Image[] hearts;
     public int maxHealth;
     int currentHealth;
+    private bool isDying = false; // Define isDying
+
     bool isImmune = false;
     public float immuneTime = 2f; // The duration of the immunity and blinking effect
     public float blinkInterval = 0.1f; // The interval between each blink
     public float upForce = 200f; // The upward force
     private Rigidbody2D rb; // The balloon's rigidbody
     private Vector3 startPosition; // Define startPosition
-    private bool isDying = false; // Define isDying
     private Animator anim; // Define anim
+    private bool isRising;
 
     // Start is called before the first frame update
     void Start()
@@ -36,8 +38,25 @@ public class BalloonControl : MonoBehaviour
             // ...apply an upward force to the balloon
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0, upForce));
+            // Set isRising to true
+            isRising = true;
+            // Update the isRising parameter in the Animator
+            anim.SetBool("isRising", isRising);
+            // Start a Coroutine to wait for the animation to finish
+            StartCoroutine(WaitForAnimation());
         }
+
         checkHealthStatus();
+    }
+
+    IEnumerator WaitForAnimation()
+    {
+        // Wait for the length of the animation
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        // Set isRising to false
+        isRising = false;
+        // Update the isRising parameter in the Animator
+        anim.SetBool("isRising", isRising);
     }
 
     public void reduceHealth(int amount)
