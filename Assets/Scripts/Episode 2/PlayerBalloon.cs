@@ -8,14 +8,16 @@ public class BalloonControl : MonoBehaviour
     public Image[] hearts;
     public int maxHealth;
     int currentHealth;
+    private bool isExploding = false; // Define isExploding
+
     bool isImmune = false;
     public float immuneTime = 2f; // The duration of the immunity and blinking effect
     public float blinkInterval = 0.1f; // The interval between each blink
     public float upForce = 200f; // The upward force
     private Rigidbody2D rb; // The balloon's rigidbody
     private Vector3 startPosition; // Define startPosition
-    private bool isDying = false; // Define isDying
     private Animator anim; // Define anim
+    private bool isRising;
 
     // Start is called before the first frame update
     void Start()
@@ -31,13 +33,30 @@ public class BalloonControl : MonoBehaviour
     void Update()
     {
         // If the space bar is pressed...
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && currentHealth > 0)
         {
             // ...apply an upward force to the balloon
             rb.velocity = Vector2.zero;
             rb.AddForce(new Vector2(0, upForce));
+            // Set isRising to true
+            isRising = true;
+            // Update the isRising parameter in the Animator
+            anim.SetBool("isRising", isRising);
+            // Start a Coroutine to wait for the animation to finish
+            StartCoroutine(WaitForAnimation());
         }
+
         checkHealthStatus();
+    }
+
+    IEnumerator WaitForAnimation()
+    {
+        // Wait for the length of the animation
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        // Set isRising to false
+        isRising = false;
+        // Update the isRising parameter in the Animator
+        anim.SetBool("isRising", isRising);
     }
 
     public void reduceHealth(int amount)
@@ -45,36 +64,39 @@ public class BalloonControl : MonoBehaviour
         if (!isImmune)
         {
             currentHealth -= amount;
-            // StartCoroutine(StartImmunity()); // Commented out as it's not defined
-            if (currentHealth > 0)
+
+            // Perform the explosion animation every time when reduceHealth is called
+            if (anim != null)
             {
-                transform.position = startPosition;
-                // StartCoroutine(StartBlinking()); // Commented out as it's not defined
+                anim.SetBool("isExploding", true);
+                // Start a Coroutine to wait for the animation to finish
+                StartCoroutine(WaitForExplosionAnimation());
             }
 
             //death
-            else if (currentHealth <= 0)
+            if (currentHealth <= 0)
             {
-                // If the player is dead, freeze the position
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                isDying = true;
-                if (anim != null)
-                {
-                    anim.SetBool("isDying", true);
-                }
                 if (rb != null)
                 {
-                    rb.simulated = false;
+                    // Apply a downward force
+                    rb.AddForce(new Vector2(0, -1), ForceMode2D.Impulse);
+                    // If the player is dead, freeze the X position and rotation
+                    rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                    anim.SetBool("isExploded", true);
+
                 }
-
-                // Move the enemy a little bit down in the y-axis
-                float moveDownAmount = 0.5f; // Adjust this value as needed
-                transform.position = new Vector3(transform.position.x, transform.position.y - moveDownAmount, transform.position.z);
-
-                // StartCoroutine(GameOverTextAfterDelay(1)); // Commented out as it's not defined
-                // StartCoroutine(RestartGameAfterDelay(5)); // Commented out as it's not defined
             }
         }
+    }
+    IEnumerator WaitForExplosionAnimation()
+    {
+        // Wait for the length of the explosion animation
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        // Set isExploding to false
+        anim.SetBool("isExploding", false);
+
+        // Change the sprite of the object
+
     }
 
     void checkHealthStatus()
@@ -89,10 +111,6 @@ public class BalloonControl : MonoBehaviour
             hearts[i].gameObject.SetActive(true);
         }
 
-        if (currentHealth <= 0)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
     }
 
     void OnCollisionEnter2D(Collision2D col)  //Checks characters collisions
