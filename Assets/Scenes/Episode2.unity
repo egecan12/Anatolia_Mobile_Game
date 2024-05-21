@@ -1929,8 +1929,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundTransform: {fileID: 1259137523}
-  moveSpeed: 2
-  moveDuration: 20
+  moveSpeed: 5
+  resetPosition: -115.3
+  startPositionX: -46.23798
 --- !u!1 &1345214881
 GameObject:
   m_ObjectHideFlags: 0
@@ -1961,8 +1962,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundTransform: {fileID: 1345214883}
-  moveSpeed: 1
-  moveDuration: 25
+  moveSpeed: 3
+  resetPosition: -115.3
+  startPositionX: -46.23798
 --- !u!4 &1345214883
 Transform:
   m_ObjectHideFlags: 0
