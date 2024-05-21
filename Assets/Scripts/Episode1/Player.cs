@@ -9,7 +9,6 @@ public class Player : MonoBehaviour
 {
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI coinCountText; // Assign your TextMeshProUGUI object in the Unity editor
-
     public float speed;
     public float jumpForce;
     public Animator anim;
