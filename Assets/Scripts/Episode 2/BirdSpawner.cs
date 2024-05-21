@@ -8,6 +8,7 @@ public class BirdSpawner : MonoBehaviour
     public Vector3 spawnPosition;
     public float spawnDelay = 5f; // Delay in seconds
 
+
     public void SpawnBird()
     {
         // Define the scene bounds
@@ -21,8 +22,16 @@ public class BirdSpawner : MonoBehaviour
         Vector3 randomSpawnPosition = new Vector3(spawnPosition.x, randomY, spawnPosition.z);
 
         GameObject enemyBirdClone = Instantiate(enemyBirdPrefab, randomSpawnPosition, Quaternion.identity);
+
+        //this is very important to attach rigidbody for clones otherwise they are not colliding
+        Rigidbody2D rb = enemyBirdClone.GetComponent<Rigidbody2D>();
+        if (rb != null)
+        {
+            rb.simulated = true;
+        }
         // Get the EnemyBird component of the clone
         EnemyBird enemyBird = enemyBirdClone.GetComponent<EnemyBird>();
+
     }
 
     public void SpawnEnemyAfterDelay()

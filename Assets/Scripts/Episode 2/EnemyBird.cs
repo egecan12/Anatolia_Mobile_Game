@@ -50,8 +50,6 @@ public class EnemyBird : MonoBehaviour
 
             // Reduce current health
             currentHealth -= 10; // or any value you want
-            Destroy(gameObject);
-            Die();
 
         }
     }
@@ -63,15 +61,13 @@ public class EnemyBird : MonoBehaviour
         {
             // Reduce current health
             currentHealth -= 10; // or any value you want
-            Destroy(gameObject);
-            Die();
         }
     }
     private void Die()
     {
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
             if (enemySpawner != null)
             {
                 enemySpawner.SpawnEnemyAfterDelay();
