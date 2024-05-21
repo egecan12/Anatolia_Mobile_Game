@@ -1,0 +1,359 @@
+fileFormatVersion: 2
+guid: 278ed70325915f84b88d5950c86cec1e
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: balloonExplosion_0
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 467
+        width: 703
+        height: 870
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ff63e552991eb840ba5b85caf556165
+      internalID: 1381006220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloonExplosion_1
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 457
+        width: 857
+        height: 1017
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6879f372596f77438e73252c32508c4
+      internalID: 1822886583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloonExplosion_2
+      rect:
+        serializedVersion: 2
+        x: 2191
+        y: 447
+        width: 724
+        height: 903
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70bc1a3db6406ee4f9deb97f39e6d910
+      internalID: -558436688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloonExplosion_3
+      rect:
+        serializedVersion: 2
+        x: 3243
+        y: 457
+        width: 703
+        height: 867
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d1e1afe763624d4081b62db4d1dc8a9
+      internalID: 462580868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloonExplosion_29
+      rect:
+        serializedVersion: 2
+        x: 4214
+        y: 454
+        width: 691
+        height: 827
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd6506897d2a7634cb9c5579fbb61dee
+      internalID: -805571753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloonExplosion_51
+      rect:
+        serializedVersion: 2
+        x: 5139
+        y: 393
+        width: 623
+        height: 887
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4643f8d6d24f5245a8ef1cf20cd5c9e
+      internalID: 1092288610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: balloonExplosion_54
+      rect:
+        serializedVersion: 2
+        x: 6162
+        y: 392
+        width: 628
+        height: 873
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f79c069f66eafd4eb65e8eecbb7e4b6
+      internalID: 1591186875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      balloonExplosion_0: 1381006220
+      balloonExplosion_1: 1822886583
+      balloonExplosion_10: 1048532919
+      balloonExplosion_11: -1098882902
+      balloonExplosion_12: -1625435010
+      balloonExplosion_13: 1769689053
+      balloonExplosion_14: 793378360
+      balloonExplosion_15: -1662432892
+      balloonExplosion_16: 1367670066
+      balloonExplosion_17: 1023354042
+      balloonExplosion_18: 1296915774
+      balloonExplosion_19: 1540789602
+      balloonExplosion_2: -558436688
+      balloonExplosion_20: 1937203388
+      balloonExplosion_21: -895787503
+      balloonExplosion_22: 968734497
+      balloonExplosion_23: 695304523
+      balloonExplosion_24: -848903301
+      balloonExplosion_25: -950266598
+      balloonExplosion_26: 688661796
+      balloonExplosion_27: 1750372022
+      balloonExplosion_28: 2091479185
+      balloonExplosion_29: -805571753
+      balloonExplosion_3: 462580868
+      balloonExplosion_30: 49446529
+      balloonExplosion_31: 683440395
+      balloonExplosion_32: -881773731
+      balloonExplosion_33: -1593031656
+      balloonExplosion_34: -1547120352
+      balloonExplosion_35: -1383927230
+      balloonExplosion_36: -111440713
+      balloonExplosion_37: -30809293
+      balloonExplosion_38: 1460354166
+      balloonExplosion_39: 274682604
+      balloonExplosion_4: -1423901589
+      balloonExplosion_40: 25413231
+      balloonExplosion_41: -1470863938
+      balloonExplosion_42: -1660687802
+      balloonExplosion_43: -1358216008
+      balloonExplosion_44: -854546152
+      balloonExplosion_45: 355005065
+      balloonExplosion_46: 730194377
+      balloonExplosion_47: 2034010238
+      balloonExplosion_48: 1789162892
+      balloonExplosion_49: 829593366
+      balloonExplosion_5: -1640027853
+      balloonExplosion_50: 262903856
+      balloonExplosion_51: 1092288610
+      balloonExplosion_52: 1752930511
+      balloonExplosion_53: -1425232482
+      balloonExplosion_54: 1591186875
+      balloonExplosion_55: -1781924380
+      balloonExplosion_56: 29942059
+      balloonExplosion_57: -959537420
+      balloonExplosion_58: 1466548283
+      balloonExplosion_6: 527417163
+      balloonExplosion_7: 154925782
+      balloonExplosion_8: -480453549
+      balloonExplosion_9: -1391699976
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

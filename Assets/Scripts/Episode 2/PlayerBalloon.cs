@@ -8,7 +8,7 @@ public class BalloonControl : MonoBehaviour
     public Image[] hearts;
     public int maxHealth;
     int currentHealth;
-    private bool isDying = false; // Define isDying
+    private bool isExploding = false; // Define isExploding
 
     bool isImmune = false;
     public float immuneTime = 2f; // The duration of the immunity and blinking effect
@@ -76,10 +76,10 @@ public class BalloonControl : MonoBehaviour
             {
                 // If the player is dead, freeze the position
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                isDying = true;
+                isExploding = true;
                 if (anim != null)
                 {
-                    anim.SetBool("isDying", true);
+                    anim.SetBool("isExploding", true);
                 }
                 if (rb != null)
                 {
