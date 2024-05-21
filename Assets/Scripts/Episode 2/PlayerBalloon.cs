@@ -33,7 +33,7 @@ public class BalloonControl : MonoBehaviour
     void Update()
     {
         // If the space bar is pressed...
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && currentHealth > 0)
         {
             // ...apply an upward force to the balloon
             rb.velocity = Vector2.zero;
@@ -64,36 +64,39 @@ public class BalloonControl : MonoBehaviour
         if (!isImmune)
         {
             currentHealth -= amount;
-            // StartCoroutine(StartImmunity()); // Commented out as it's not defined
-            if (currentHealth > 0)
+
+            // Perform the explosion animation every time when reduceHealth is called
+            if (anim != null)
             {
-                transform.position = startPosition;
-                // StartCoroutine(StartBlinking()); // Commented out as it's not defined
+                anim.SetBool("isExploding", true);
+                // Start a Coroutine to wait for the animation to finish
+                StartCoroutine(WaitForExplosionAnimation());
             }
 
             //death
-            else if (currentHealth <= 0)
+            if (currentHealth <= 0)
             {
-                // If the player is dead, freeze the position
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                isExploding = true;
-                if (anim != null)
-                {
-                    anim.SetBool("isExploding", true);
-                }
                 if (rb != null)
                 {
-                    rb.simulated = false;
+                    // Apply a downward force
+                    rb.AddForce(new Vector2(0, -1), ForceMode2D.Impulse);
+                    // If the player is dead, freeze the X position and rotation
+                    rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                    anim.SetBool("isExploded", true);
+
                 }
-
-                // Move the enemy a little bit down in the y-axis
-                float moveDownAmount = 0.5f; // Adjust this value as needed
-                transform.position = new Vector3(transform.position.x, transform.position.y - moveDownAmount, transform.position.z);
-
-                // StartCoroutine(GameOverTextAfterDelay(1)); // Commented out as it's not defined
-                // StartCoroutine(RestartGameAfterDelay(5)); // Commented out as it's not defined
             }
         }
+    }
+    IEnumerator WaitForExplosionAnimation()
+    {
+        // Wait for the length of the explosion animation
+        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+        // Set isExploding to false
+        anim.SetBool("isExploding", false);
+
+        // Change the sprite of the object
+
     }
 
     void checkHealthStatus()
@@ -108,10 +111,6 @@ public class BalloonControl : MonoBehaviour
             hearts[i].gameObject.SetActive(true);
         }
 
-        if (currentHealth <= 0)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
     }
 
     void OnCollisionEnter2D(Collision2D col)  //Checks characters collisions
