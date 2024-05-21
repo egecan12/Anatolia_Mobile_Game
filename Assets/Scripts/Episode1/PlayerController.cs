@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Linq;
+
 
 public class PlayerController : MonoBehaviour
 {
+    public Collider2D attackCollider;
     public Rigidbody2D rb;
     public float moveSpeed;
     private Vector2 moveDirection;
     public InputActionReference move;
+    public InputActionReference attack;
+    private bool isAttacking = false;
     public Animator animator;
-    public SpriteRenderer spriteRenderer; // Add this line
+    public SpriteRenderer spriteRenderer;
+
 
     private void Update()
     {
@@ -39,5 +45,36 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
+    }
+
+    private void OnEnable()
+    {
+        attack.action.started += Attack;
+    }
+
+    private void OnDisable()
+    {
+        attack.action.started -= Attack;
+    }
+
+    private void Attack(InputAction.CallbackContext context)
+    {
+        if (!isAttacking)
+        {
+            isAttacking = true;
+            animator.SetBool("isAttacking", true);
+            StartCoroutine(ResetAttackAfterAnimation());
+        }
+    }
+
+
+    private IEnumerator ResetAttackAfterAnimation()
+    {
+        float animationLength = animator.runtimeAnimatorController.animationClips.FirstOrDefault(clip => clip.name == "HomelessAttackAnim")?.length ?? 0;
+
+        yield return new WaitForSeconds(animationLength);
+
+        isAttacking = false;
+        animator.SetBool("isAttacking", false);
     }
 }

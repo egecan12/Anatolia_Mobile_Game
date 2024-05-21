@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public Animator anim;
     public SpriteRenderer sr;
     public Rigidbody2D rb;
-    public Collider2D attackCollider;
+    //public Collider2D attackCollider;
     bool isGrounded;
     public Image[] hearts;
     public int maxHealth;
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        Movement();
+        //Movement();
         checkHealthStatus();
         if (isGameOver)
         {
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Movement()   //Character movement class
+    /*void Movement()   //Character movement class
     {
         bool isRunning = false;
         if (!isDying)
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
 
 
 
-    }
+    }*/
 
     void OnCollisionEnter2D(Collision2D col)  //Checks characters collisions
     {
@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(3);
         isImmune = false;
     }
-    IEnumerator AttackAnimation()
+    /*IEnumerator AttackAnimation()
     {
         attackCollider.enabled = true;
         anim.SetBool("isAttacking", true);
@@ -199,7 +199,7 @@ public class Player : MonoBehaviour
         anim.SetBool("isAttacking", false);
         attackCollider.enabled = false;
 
-    }
+    }*/
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy")
