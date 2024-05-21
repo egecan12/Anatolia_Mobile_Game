@@ -12,14 +12,17 @@ public class BirdSpawner : MonoBehaviour
     public void SpawnBird()
     {
         // Define the scene bounds
-        float minY = 0.5f; // Adjust these values as needed
-        float maxY = 8.0f;
+        float minY = -4.70f; // Adjust these values as needed
+        float maxY = 4.70f;
+
+        // Define the x position from where you want to spawn the birds
+        float spawnX = -42f; // Adjust this value as needed
 
         // Generate a random y position within the defined bounds
         float randomY = Random.Range(minY, maxY);
 
-        // Create a new spawn position with the random x value
-        Vector3 randomSpawnPosition = new Vector3(spawnPosition.x, randomY, spawnPosition.z);
+        // Create a new spawn position with the defined x value
+        Vector3 randomSpawnPosition = new Vector3(spawnX, randomY, spawnPosition.z);
 
         GameObject enemyBirdClone = Instantiate(enemyBirdPrefab, randomSpawnPosition, Quaternion.identity);
 
@@ -31,7 +34,6 @@ public class BirdSpawner : MonoBehaviour
         }
         // Get the EnemyBird component of the clone
         EnemyBird enemyBird = enemyBirdClone.GetComponent<EnemyBird>();
-
     }
 
     public void SpawnEnemyAfterDelay()

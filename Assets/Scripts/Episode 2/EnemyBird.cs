@@ -67,7 +67,7 @@ public class EnemyBird : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            gameObject.SetActive(false);
+            Destroy(gameObject);
             if (enemySpawner != null)
             {
                 enemySpawner.SpawnEnemyAfterDelay();
