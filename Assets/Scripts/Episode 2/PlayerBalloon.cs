@@ -64,11 +64,13 @@ public class BalloonControl : MonoBehaviour
         if (!isImmune)
         {
             currentHealth -= amount;
+            isImmune = true; // PlayerBalloon becomes immune after health is reduced
 
             // Perform the explosion animation every time when reduceHealth is called
             if (anim != null)
             {
                 anim.SetBool("isExploding", true);
+
                 // Start a Coroutine to wait for the animation to finish
                 StartCoroutine(WaitForExplosionAnimation());
             }
@@ -94,6 +96,8 @@ public class BalloonControl : MonoBehaviour
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
         // Set isExploding to false
         anim.SetBool("isExploding", false);
+        isImmune = false;
+
 
         // Change the sprite of the object
 

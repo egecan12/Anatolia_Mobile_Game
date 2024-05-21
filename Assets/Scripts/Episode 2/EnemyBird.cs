@@ -8,7 +8,7 @@ public class EnemyBird : MonoBehaviour
     private int currentHealth = 1;
     private float moveSpeed = 5f; // The speed at which the bird moves
     public BirdSpawner enemySpawner;
-
+    private Animator anim; // Define anim
     private Rigidbody2D rb;
 
     void Start()
@@ -52,6 +52,21 @@ public class EnemyBird : MonoBehaviour
             currentHealth -= 10; // or any value you want
 
         }
+
+        // Check if the bird has collided with the player
+        if (other.gameObject.tag == "Player")
+        {
+            // Get the Animator component
+            Animator anim = GetComponent<Animator>();
+            if (anim != null)
+            {
+                // Set the isExploding animation parameter to true
+                anim.SetBool("isExploding", true);
+
+                // Start a Coroutine to wait for the animation to finish
+                StartCoroutine(WaitForExplosionAnimation());
+            }
+        }
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -74,6 +89,13 @@ public class EnemyBird : MonoBehaviour
             }
 
         }
+
+    }
+    IEnumerator WaitForExplosionAnimation()
+    {
+        // Wait for the length of the explosion animation
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
 
     }
 }

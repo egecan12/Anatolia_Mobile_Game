@@ -71,6 +71,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b72d33b2-c736-41d0-a23a-f5f35613f90a",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4d855de7-b9d6-4e87-bb06-ff0842cf5e41",
                     "path": "<Keyboard>/space",
                     "interactions": "",
