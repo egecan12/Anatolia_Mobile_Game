@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // You need to import UnityEngine.UI to use Image
 
-public class BalloonControl : MonoBehaviour
+public class PlayerBalloon : MonoBehaviour
 {
     public Image[] hearts;
     public int maxHealth;
-    int currentHealth;
+    public int currentHealth;
     private bool isExploding = false; // Define isExploding
 
     bool isImmune = false;
