@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - askGoldCloud
   - GiantBird
+  - 3HoursText
+  - 3HoursPanel
   layers:
   - Default
   - TransparentFX
