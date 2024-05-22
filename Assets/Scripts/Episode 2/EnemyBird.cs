@@ -65,19 +65,25 @@ public class EnemyBird : MonoBehaviour
 
                 // Start a Coroutine to wait for the animation to finish
                 StartCoroutine(WaitForExplosionAnimation());
+
+                currentHealth -= 10;
             }
         }
     }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("collided");
-        // Falling reduces the health logic
-        if (collision.gameObject.tag == "Death")
-        {
-            // Reduce current health
-            currentHealth -= 10; // or any value you want
-        }
-    }
+    // void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     Debug.Log("collided");
+    //     // Falling reduces the health logic
+    //     if (collision.gameObject.tag == "Death")
+    //     {
+    //         // Reduce current health
+    //         currentHealth -= 10; // or any value you want
+    //     }
+    //     if (collision.gameObject.tag == "Player")
+    //     {
+    //         currentHealth -= 10;
+    //     }
+    // }
     private void Die()
     {
         if (currentHealth <= 0)

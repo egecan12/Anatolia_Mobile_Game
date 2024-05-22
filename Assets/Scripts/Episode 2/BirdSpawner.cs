@@ -40,7 +40,7 @@ public class BirdSpawner : MonoBehaviour
     {
 
         // If bird count is more than 5 and the giant bird has not been spawned, spawn the giant bird
-        if (birdCount > 1)
+        if (birdCount > 30)
         {
             if (giantBirdCount <= 0)
             {
