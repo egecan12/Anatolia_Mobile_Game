@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6739708432980372035}
   m_Layer: 0
   m_Name: giantBird
-  m_TagString: Enemy
+  m_TagString: GiantBird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

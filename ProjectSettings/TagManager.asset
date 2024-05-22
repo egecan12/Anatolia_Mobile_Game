@@ -8,6 +8,7 @@ TagManager:
   - Death
   - Enemy
   - askGoldCloud
+  - GiantBird
   layers:
   - Default
   - TransparentFX

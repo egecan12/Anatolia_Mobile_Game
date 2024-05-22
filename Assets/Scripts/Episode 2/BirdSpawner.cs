@@ -24,9 +24,9 @@ public class BirdSpawner : MonoBehaviour
 
             // Instantiate the giant bird prefab at the defined spawn position
             Instantiate(giantBirdPrefab, giantBirdSpawnPosition, Quaternion.identity);
-
-            // Set giantBirdSpawned to true so the giant bird is not spawned again
+            //this is very important to attach rigidbody for clones otherwise they are not colliding
             giantBirdSpawned = true;
+
         }
         else if (!giantBirdSpawned) // Only spawn small birds if the giant bird has not been spawned
         {

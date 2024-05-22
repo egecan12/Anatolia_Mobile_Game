@@ -18,6 +18,7 @@ public class PlayerBalloon : MonoBehaviour
     private Vector3 startPosition; // Define startPosition
     private Animator anim; // Define anim
     private bool isRising;
+    public GiantBird giantBird;
 
     // Start is called before the first frame update
     void Start()
@@ -86,6 +87,7 @@ public class PlayerBalloon : MonoBehaviour
                     rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
                     anim.SetBool("isExploded", true);
 
+
                 }
             }
         }
@@ -132,6 +134,11 @@ public class PlayerBalloon : MonoBehaviour
         {
             // If the player is not attacking, reduce their health
             reduceHealth(1); // replace 1 with the amount of health you want to reduce
+        }
+        if (other.gameObject.tag == "GiantBird")
+        {
+            // If the player is not attacking, reduce their health
+            reduceHealth(3); // replace 3 with the amount of health you want to reduce
         }
     }
 }
