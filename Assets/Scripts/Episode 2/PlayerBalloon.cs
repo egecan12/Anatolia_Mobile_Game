@@ -18,7 +18,7 @@ public class PlayerBalloon : MonoBehaviour
     private Vector3 startPosition; // Define startPosition
     private Animator anim; // Define anim
     private bool isRising;
-    public GiantBird giantBird;
+    private GiantBird giantBird;
 
     // Start is called before the first frame update
     void Start()
