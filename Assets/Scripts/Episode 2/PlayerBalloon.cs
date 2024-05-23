@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // You need to import UnityEngine.UI to use Image
+using UnityEngine.InputSystem;
+
 
 public class PlayerBalloon : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class PlayerBalloon : MonoBehaviour
     private Animator anim; // Define anim
     private bool isRising;
     private GiantBird giantBird;
+    public InputActionReference jump;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,21 +37,22 @@ public class PlayerBalloon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If the space bar is pressed...
-        if (Input.GetKeyDown(KeyCode.Space) && currentHealth > 0)
+        if (jump.action.triggered && currentHealth > 0)
         {
-            // ...apply an upward force to the balloon
-            rb.velocity = Vector2.zero;
-            rb.AddForce(new Vector2(0, upForce));
-            // Set isRising to true
-            isRising = true;
-            // Update the isRising parameter in the Animator
-            anim.SetBool("isRising", isRising);
-            // Start a Coroutine to wait for the animation to finish
-            StartCoroutine(WaitForAnimation());
+            Jump();
         }
 
         checkHealthStatus();
+    }
+
+    void Jump()
+    {
+        rb.velocity = Vector2.zero;
+        rb.AddForce(new Vector2(0, upForce));
+        isRising = true;
+        anim.SetBool("isRising", isRising);
+        StartCoroutine(WaitForAnimation());
+
     }
 
     IEnumerator WaitForAnimation()

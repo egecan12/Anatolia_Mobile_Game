@@ -48,7 +48,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             ],
             ""bindings"": [
                 {
-                    ""name"": ""2D Vector"",
+                    ""name"": ""WASD"",
                     ""id"": ""236f0020-0eae-4552-ba0a-40ac4b91ee4f"",
                     ""path"": ""2DVector"",
                     ""interactions"": """",
@@ -92,15 +92,48 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": """",
-                    ""id"": ""b72d33b2-c736-41d0-a23a-f5f35613f90a"",
-                    ""path"": """",
+                    ""name"": ""ArrowKeys"",
+                    ""id"": ""0787032b-0c9b-4180-91a0-1d070d722693"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""50b126e0-7e8e-4299-8362-335ed1f2c68d"",
+                    ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Move"",
                     ""isComposite"": false,
-                    ""isPartOfComposite"": false
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""4df4c3b0-22ea-46d2-8697-af9bc5919554"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""cd326ea4-be56-471b-98da-89a99ce67f7a"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -110,6 +143,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Episode2"",
+            ""id"": ""6a01b0c9-cb68-4f20-91f4-64e9c2db0bb9"",
+            ""actions"": [
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""927118e7-c7b3-4a5a-beb4-67d44d26ed34"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ee4fe5fb-1677-4836-98ba-febd85cadc6d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -134,6 +195,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
+        // Episode2
+        m_Episode2 = asset.FindActionMap("Episode2", throwIfNotFound: true);
+        m_Episode2_Jump = m_Episode2.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -245,6 +309,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // Episode2
+    private readonly InputActionMap m_Episode2;
+    private List<IEpisode2Actions> m_Episode2ActionsCallbackInterfaces = new List<IEpisode2Actions>();
+    private readonly InputAction m_Episode2_Jump;
+    public struct Episode2Actions
+    {
+        private @PlayerControls m_Wrapper;
+        public Episode2Actions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Jump => m_Wrapper.m_Episode2_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_Episode2; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Episode2Actions set) { return set.Get(); }
+        public void AddCallbacks(IEpisode2Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_Episode2ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Episode2ActionsCallbackInterfaces.Add(instance);
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        private void UnregisterCallbacks(IEpisode2Actions instance)
+        {
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        public void RemoveCallbacks(IEpisode2Actions instance)
+        {
+            if (m_Wrapper.m_Episode2ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IEpisode2Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_Episode2ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Episode2ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public Episode2Actions @Episode2 => new Episode2Actions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -258,5 +368,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+    }
+    public interface IEpisode2Actions
+    {
+        void OnJump(InputAction.CallbackContext context);
     }
 }

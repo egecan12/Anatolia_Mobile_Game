@@ -621,6 +621,7 @@ GameObject:
   - component: {fileID: 245963860}
   - component: {fileID: 245963861}
   - component: {fileID: 245963862}
+  - component: {fileID: 245963863}
   m_Layer: 0
   m_Name: PlayerBalloon
   m_TagString: Player
@@ -716,6 +717,7 @@ MonoBehaviour:
   immuneTime: 2
   blinkInterval: 0.1
   upForce: 200
+  jump: {fileID: 6512204522701591636, guid: 5f6c26e59f949164fa35eb333476bde4, type: 3}
 --- !u!50 &245963860
 Rigidbody2D:
   serializedVersion: 4
@@ -809,6 +811,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &245963863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245963856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 5f6c26e59f949164fa35eb333476bde4, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: Keyboard
+  m_DefaultActionMap: 6a01b0c9-cb68-4f20-91f4-64e9c2db0bb9
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &266064675
 GameObject:
   m_ObjectHideFlags: 0
