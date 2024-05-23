@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2232692620163970122}
   - component: {fileID: 6030034729763845603}
   - component: {fileID: -1917065806345301374}
+  - component: {fileID: 8915850504383982844}
   - component: {fileID: -3471510091735624842}
   m_Layer: 0
   m_Name: bird
@@ -116,7 +117,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1742974539204399905}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -167,6 +168,77 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpawner: {fileID: 0}
+--- !u!68 &8915850504383982844
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742974539204399905}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.5073967, y: 0.22962677}
+  - {x: 0.397892, y: 0.15081406}
+  - {x: 0.36200333, y: 0.026844978}
+  - {x: 0.2701416, y: -0.08222401}
+  - {x: 0.26050568, y: -0.22251165}
+  - {x: 0.42775345, y: -0.268592}
+  - {x: 0.43307495, y: -0.36591566}
+  - {x: 0.31338882, y: -0.3708048}
+  - {x: 0.31168365, y: -0.44296265}
+  - {x: -0.27415848, y: -0.454157}
+  - {x: -0.2717209, y: -0.23850417}
+  - {x: -0.22665405, y: -0.12948275}
+  - {x: -0.22148132, y: -0.09383321}
+  - {x: -0.2620468, y: -0.09624767}
+  - {x: -0.2605133, y: -0.053218365}
+  - {x: -0.31451797, y: -0.058558464}
+  - {x: -0.3022499, y: -0.0010118484}
+  - {x: -0.3443222, y: -0.010281205}
+  - {x: -0.3530388, y: 0.036537886}
+  - {x: -0.39074326, y: 0.03624487}
+  - {x: -0.382061, y: 0.07931423}
+  - {x: -0.4297638, y: 0.07393217}
+  - {x: -0.43440628, y: 0.15116096}
+  - {x: -0.46963882, y: 0.15316677}
+  - {x: -0.47154236, y: 0.23186731}
+  - {x: -0.50696945, y: 0.236171}
+  - {x: -0.50614166, y: 0.4444387}
+  - {x: -0.15184402, y: 0.14444256}
+  - {x: 0.050598145, y: 0.13413763}
+  - {x: 0.4629631, y: 0.4592533}
+  - {x: 0.5108528, y: 0.45949173}
+  - {x: 0.5074043, y: 0.21851587}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!50 &-3471510091735624842
 Rigidbody2D:
   serializedVersion: 4
