@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI; // You need to import UnityEngine.UI to use Image
-
+using UnityEngine.SceneManagement; // Include this namespace
 public class PlayerBalloon : MonoBehaviour
 {
     public Image[] hearts;
@@ -139,6 +139,18 @@ public class PlayerBalloon : MonoBehaviour
         {
             // If the player is not attacking, reduce their health
             reduceHealth(3); // replace 3 with the amount of health you want to reduce
+
+            // Start the LoadSceneAfterDelay coroutine
+            StartCoroutine(LoadSceneAfterDelay(2));
+
         }
+    }
+    IEnumerator LoadSceneAfterDelay(float delay)
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
+        // Load the new scene
+        SceneManager.LoadScene("loadingScene3");
     }
 }
