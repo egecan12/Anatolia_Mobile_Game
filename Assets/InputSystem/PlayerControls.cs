@@ -175,6 +175,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Episode3"",
+            ""id"": ""3e0f65a0-7d4a-498e-9005-30c1548bfb50"",
+            ""actions"": [
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""879d8843-482f-40d9-bc8a-d03ed5cd8775"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""054a6559-d2b1-4a37-a2bd-8c785c985d62"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -198,6 +226,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Episode2
         m_Episode2 = asset.FindActionMap("Episode2", throwIfNotFound: true);
         m_Episode2_Jump = m_Episode2.FindAction("Jump", throwIfNotFound: true);
+        // Episode3
+        m_Episode3 = asset.FindActionMap("Episode3", throwIfNotFound: true);
+        m_Episode3_Jump = m_Episode3.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -355,6 +386,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public Episode2Actions @Episode2 => new Episode2Actions(this);
+
+    // Episode3
+    private readonly InputActionMap m_Episode3;
+    private List<IEpisode3Actions> m_Episode3ActionsCallbackInterfaces = new List<IEpisode3Actions>();
+    private readonly InputAction m_Episode3_Jump;
+    public struct Episode3Actions
+    {
+        private @PlayerControls m_Wrapper;
+        public Episode3Actions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Jump => m_Wrapper.m_Episode3_Jump;
+        public InputActionMap Get() { return m_Wrapper.m_Episode3; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(Episode3Actions set) { return set.Get(); }
+        public void AddCallbacks(IEpisode3Actions instance)
+        {
+            if (instance == null || m_Wrapper.m_Episode3ActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_Episode3ActionsCallbackInterfaces.Add(instance);
+            @Jump.started += instance.OnJump;
+            @Jump.performed += instance.OnJump;
+            @Jump.canceled += instance.OnJump;
+        }
+
+        private void UnregisterCallbacks(IEpisode3Actions instance)
+        {
+            @Jump.started -= instance.OnJump;
+            @Jump.performed -= instance.OnJump;
+            @Jump.canceled -= instance.OnJump;
+        }
+
+        public void RemoveCallbacks(IEpisode3Actions instance)
+        {
+            if (m_Wrapper.m_Episode3ActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IEpisode3Actions instance)
+        {
+            foreach (var item in m_Wrapper.m_Episode3ActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_Episode3ActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public Episode3Actions @Episode3 => new Episode3Actions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -370,6 +447,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
     }
     public interface IEpisode2Actions
+    {
+        void OnJump(InputAction.CallbackContext context);
+    }
+    public interface IEpisode3Actions
     {
         void OnJump(InputAction.CallbackContext context);
     }
