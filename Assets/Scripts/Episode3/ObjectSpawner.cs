@@ -10,6 +10,7 @@ public class ObjectSpawner : MonoBehaviour
     public float defaultSpawnRate = 5f; // Maximum spawn rate in seconds
 
 
+
     private void Start()
     {
 
@@ -21,6 +22,9 @@ public class ObjectSpawner : MonoBehaviour
     private void Update()
     {
         // changeColor();
+
+
+
     }
 
     private void Spawn()

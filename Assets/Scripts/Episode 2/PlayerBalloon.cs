@@ -72,13 +72,13 @@ public class PlayerBalloon : MonoBehaviour
             isImmune = true; // PlayerBalloon becomes immune after health is reduced
 
             // Perform the explosion animation every time when reduceHealth is called
-            if (anim != null)
-            {
-                anim.SetBool("isExploding", true);
+            // if (anim != null)
+            // {
+            //     anim.SetBool("isExploding", true);
 
-                // Start a Coroutine to wait for the animation to finish
-                StartCoroutine(WaitForExplosionAnimation());
-            }
+            //     // Start a Coroutine to wait for the animation to finish
+            //     StartCoroutine(WaitForExplosionAnimation());
+            // }
 
             //death
             if (currentHealth <= 0)
@@ -96,18 +96,18 @@ public class PlayerBalloon : MonoBehaviour
             }
         }
     }
-    IEnumerator WaitForExplosionAnimation()
-    {
-        // Wait for the length of the explosion animation
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-        // Set isExploding to false
-        anim.SetBool("isExploding", false);
-        isImmune = false;
+    // IEnumerator WaitForExplosionAnimation()
+    // {
+    //     // Wait for the length of the explosion animation
+    //     yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
+    //     // Set isExploding to false
+    //     anim.SetBool("isExploding", false);
+    //     isImmune = false;
 
 
-        // Change the sprite of the object
+    //     // Change the sprite of the object
 
-    }
+    // }
 
     void checkHealthStatus()
     {
@@ -139,15 +139,7 @@ public class PlayerBalloon : MonoBehaviour
             // If the player is not attacking, reduce their health
             reduceHealth(1); // replace 1 with the amount of health you want to reduce
         }
-        if (other.gameObject.tag == "GiantBird")
-        {
-            // If the player is not attacking, reduce their health
-            reduceHealth(3); // replace 3 with the amount of health you want to reduce
 
-            // Start the LoadSceneAfterDelay coroutine
-            StartCoroutine(LoadSceneAfterDelay(2));
-
-        }
     }
     IEnumerator LoadSceneAfterDelay(float delay)
     {
