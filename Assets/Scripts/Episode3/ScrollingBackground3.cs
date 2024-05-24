@@ -28,13 +28,13 @@ public class ScrollingBackground : MonoBehaviour
         // If background1 has moved off-screen, reset its position
         if (background1.transform.position.x < background1StartPosition.x - backgroundWidth1)
         {
-            Vector3 spawnPosition = new Vector3(background2.transform.position.x + backgroundWidth1, background1.transform.position.y, background1.transform.position.z);
+            Vector3 spawnPosition = new Vector3(background2.transform.position.x - 0.3f + backgroundWidth1, background1.transform.position.y, background1.transform.position.z);
             background1.transform.position = spawnPosition;
         }
         // If background2 has moved off-screen, reset its position
         if (background2.transform.position.x < background2StartPosition.x - backgroundWidth2)
         {
-            background2.transform.position = background2StartPosition;
+            background2.transform.position = background2StartPosition - new Vector3(0.3f, 0, 0);
         }
 
 
