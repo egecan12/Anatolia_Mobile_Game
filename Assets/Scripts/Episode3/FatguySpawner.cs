@@ -12,8 +12,10 @@ public class FatguySpawner : MonoBehaviour
 
     private void Start()
     {
+
         // Start spawning
         Spawn();
+
     }
 
     private void Spawn()

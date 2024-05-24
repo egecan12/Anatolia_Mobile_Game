@@ -20,7 +20,7 @@ public class ObjectSpawner : MonoBehaviour
     }
     private void Update()
     {
-        changeColor();
+        // changeColor();
     }
 
     private void Spawn()
@@ -50,27 +50,27 @@ public class ObjectSpawner : MonoBehaviour
         }
         Invoke(nameof(Spawn), spawnRate);
     }
-    private void changeColor()
-    {
-        GameObject landscape = GameObject.Find("Landscape");
+    // public void changeColor()
+    // {
+    //     GameObject landscape = GameObject.Find("Landscape");
 
-        // Convert the hex color to a Color
-        Color newColor;
-        if (ColorUtility.TryParseHtmlString("#261E2E", out newColor))
-        {
-            // Change the color of all child sprites
-            foreach (Transform child in landscape.transform)
-            {
-                SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
-                if (spriteRenderer != null)
-                {
-                    spriteRenderer.color = newColor;
-                }
-            }
-        }
-        else
-        {
-            Debug.LogError("Invalid color");
-        }
-    }
+    //     // Convert the hex color to a Color
+    //     Color newColor;
+    //     if (ColorUtility.TryParseHtmlString("#261E2E", out newColor))
+    //     {
+    //         // Change the color of all child sprites
+    //         foreach (Transform child in landscape.transform)
+    //         {
+    //             SpriteRenderer spriteRenderer = child.GetComponent<SpriteRenderer>();
+    //             if (spriteRenderer != null)
+    //             {
+    //                 spriteRenderer.color = newColor;
+    //             }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Debug.LogError("Invalid color");
+    //     }
+    // }
 }

@@ -12,8 +12,12 @@ public class MoveFatguy : MonoBehaviour
         transform.localScale += new Vector3(scaleSpeed, scaleSpeed, scaleSpeed) * Time.deltaTime;
 
     }
-    void OnBecameInvisible()
+    void OnTriggerEnter2D(Collider2D other)  //Checks characters collisions
     {
-        Destroy(gameObject);
+        // Falling reduces the health logic
+        if (other.gameObject.tag == "Death")
+        {
+            Destroy(gameObject);
+        }
     }
 }
