@@ -4,25 +4,25 @@ using System.Collections;
 
 public class LoadSceneAfterDelay3 : MonoBehaviour
 {
-    public string sceneName = "Episode3";
+    private bool canLoadScene = false;
 
     void Start()
     {
-        StartCoroutine(LoadAfterDelay(sceneName));
+        StartCoroutine(WaitForSeconds(6));
     }
 
-    IEnumerator LoadAfterDelay(string sceneName)
+    void Update()
     {
-        while (true)
+        if (canLoadScene && Input.anyKeyDown)
         {
-            if (Input.anyKeyDown)
-            {
-                break;
-            }
-
-            yield return null;
+            // Load your scene here
+            SceneManager.LoadScene("Episode3");
         }
+    }
 
-        SceneManager.LoadScene(sceneName);
+    IEnumerator WaitForSeconds(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        canLoadScene = true;
     }
 }

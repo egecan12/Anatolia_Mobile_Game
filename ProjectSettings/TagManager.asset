@@ -11,6 +11,7 @@ TagManager:
   - GiantBird
   - 3HoursText
   - 3HoursPanel
+  - TextUI
   layers:
   - Default
   - TransparentFX
