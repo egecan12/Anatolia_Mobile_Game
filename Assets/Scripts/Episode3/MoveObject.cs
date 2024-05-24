@@ -9,4 +9,8 @@ public class MoveObject : MonoBehaviour
         // Move the object from left to right
         transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
     }
+    void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
 }
