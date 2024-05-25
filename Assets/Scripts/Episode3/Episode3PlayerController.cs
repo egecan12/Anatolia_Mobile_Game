@@ -8,7 +8,6 @@ using TMPro; // Import the TextMeshPro namespace
 
 public class Episode3PlayerController : MonoBehaviour
 {
-
     public TextMeshProUGUI gameOverText;
     public float blinkInterval = 0.1f;
     public Image[] hearts;
@@ -47,7 +46,15 @@ public class Episode3PlayerController : MonoBehaviour
     void Awake()
     {
         jump.action.started += ctx => pressStartTime = Time.time;
-        jump.action.canceled += ctx => pressDuration = Time.time - pressStartTime;
+        jump.action.canceled += ctx =>
+        {
+            pressDuration = Time.time - pressStartTime;
+            if (isGrounded && currentHealth > 0)
+            {
+                Jump(pressDuration);
+                pressDuration = 0;
+            }
+        };
     }
 
     // Update is called once per frame
@@ -57,15 +64,15 @@ public class Episode3PlayerController : MonoBehaviour
         {
             if (isGrounded)
             {
-                // Call the Jump method with the press duration
-                Jump(pressDuration);
+                return;
             }
-
         }
+
         if (isGameOver)
         {
             return;
         }
+
         checkHealthStatus();
     }
 
