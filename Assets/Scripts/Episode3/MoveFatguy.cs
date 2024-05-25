@@ -3,7 +3,7 @@ using UnityEngine;
 public class MoveFatguy : MonoBehaviour
 {
     public float speed = 1f; // Speed of the object
-    public float scaleSpeed = 0.01f; // The speed at which the object scales up
+    public float scaleSpeed = 0.03f; // The speed at which the object scales up
 
     private void Update()
     {
