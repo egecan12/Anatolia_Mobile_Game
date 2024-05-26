@@ -11,12 +11,14 @@ public class PlayerController : MonoBehaviour
     public Rigidbody2D rb;
     public float moveSpeed;
     private Vector2 moveDirection;
-    public InputActionReference move;
-    public InputActionReference attack;
+    [SerializeField] private InputActionReference move;
+    [SerializeField] private InputActionReference attack;
+    [SerializeField] private InputActionReference jump;
     private bool isAttacking = false;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
-
+    private bool isJumping;
+    [SerializeField] private float jumpForce;
 
     private void Update()
     {
@@ -50,11 +52,13 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         attack.action.started += Attack;
+        jump.action.started += Jump;
     }
 
     private void OnDisable()
     {
         attack.action.started -= Attack;
+        jump.action.started -= Jump;
     }
 
     private void Attack(InputAction.CallbackContext context)
@@ -76,5 +80,26 @@ public class PlayerController : MonoBehaviour
 
         isAttacking = false;
         animator.SetBool("isAttacking", false);
+    }
+
+    private void Jump(InputAction.CallbackContext context)
+    {
+        if (!isJumping)
+        {
+            isJumping = true;
+            rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
+            animator.SetBool("isJumping", isJumping);
+            StartCoroutine(ResetJumpAfterAnimation());
+        }
+    }
+
+    private IEnumerator ResetJumpAfterAnimation()
+    {
+        float animationLength = animator.runtimeAnimatorController.animationClips.FirstOrDefault(clip => clip.name == "HomelessJumpAnim")?.length ?? 0;
+
+        yield return new WaitForSeconds(animationLength);
+
+        isJumping = false;
+        animator.SetBool("isJumping", false);
     }
 }

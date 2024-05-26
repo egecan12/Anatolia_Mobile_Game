@@ -847,7 +847,7 @@ GameObject:
   - component: {fileID: 459948333}
   - component: {fileID: 459948335}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5371,12 +5371,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70eddeb9c573d8841acb17bf78ae6187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackCollider: {fileID: 0}
   rb: {fileID: 1886606393}
   moveSpeed: 5
   move: {fileID: -4746672526195748554, guid: 5f6c26e59f949164fa35eb333476bde4, type: 3}
   attack: {fileID: -1776576019374300437, guid: 5f6c26e59f949164fa35eb333476bde4, type: 3}
+  jump: {fileID: -6169539376104245132, guid: 5f6c26e59f949164fa35eb333476bde4, type: 3}
   animator: {fileID: 1886606395}
   spriteRenderer: {fileID: 1886606394}
+  jumpForce: 35
 --- !u!114 &1886606397
 MonoBehaviour:
   m_ObjectHideFlags: 0
