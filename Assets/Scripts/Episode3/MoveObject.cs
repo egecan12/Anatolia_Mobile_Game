@@ -22,6 +22,9 @@ public class MoveObject : MonoBehaviour
 
             // Apply the new position
             enemy.transform.position = newPosition;
+            // Rotate the enemy around the z-axis
+            float rotationSpeed = 10f; // Set this to the desired rotation speed
+            enemy.transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
         }
     }
 

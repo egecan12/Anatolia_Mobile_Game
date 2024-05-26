@@ -686,7 +686,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Loading...
+  m_text: Hazir olunca ekrana dokun...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10bf5de8cb4d1ff49803019b3dc8459a, type: 2}
   m_sharedMaterial: {fileID: -2221005534205164104, guid: 10bf5de8cb4d1ff49803019b3dc8459a, type: 2}
@@ -1423,7 +1423,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Task: Do not touch Obstacles'
+  m_text: 'Gorev: Zipla, Engellere takilma'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10bf5de8cb4d1ff49803019b3dc8459a, type: 2}
   m_sharedMaterial: {fileID: -2221005534205164104, guid: 10bf5de8cb4d1ff49803019b3dc8459a, type: 2}
@@ -2812,7 +2812,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Didim  Level 3
+  m_text: Didim, Altinkum
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 10bf5de8cb4d1ff49803019b3dc8459a, type: 2}
   m_sharedMaterial: {fileID: -2221005534205164104, guid: 10bf5de8cb4d1ff49803019b3dc8459a, type: 2}
