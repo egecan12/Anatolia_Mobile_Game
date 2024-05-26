@@ -179,6 +179,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "LoadingScenes",
+            "id": "c650e76a-7ccc-465f-b35a-f44f7d83c1f3",
+            "actions": [
+                {
+                    "name": "PassScreen",
+                    "type": "Button",
+                    "id": "a340dbed-458e-442b-bf86-cb8370277240",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "68301003-21a9-43b0-951e-bb5118dc51aa",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "PassScreen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

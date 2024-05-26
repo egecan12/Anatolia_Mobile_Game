@@ -201,6 +201,34 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""LoadingScenes"",
+            ""id"": ""c650e76a-7ccc-465f-b35a-f44f7d83c1f3"",
+            ""actions"": [
+                {
+                    ""name"": ""PassScreen"",
+                    ""type"": ""Button"",
+                    ""id"": ""a340dbed-458e-442b-bf86-cb8370277240"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""68301003-21a9-43b0-951e-bb5118dc51aa"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""PassScreen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -228,6 +256,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // Episode3
         m_Episode3 = asset.FindActionMap("Episode3", throwIfNotFound: true);
         m_Episode3_Jump = m_Episode3.FindAction("Jump", throwIfNotFound: true);
+        // LoadingScenes
+        m_LoadingScenes = asset.FindActionMap("LoadingScenes", throwIfNotFound: true);
+        m_LoadingScenes_PassScreen = m_LoadingScenes.FindAction("PassScreen", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -439,6 +470,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public Episode3Actions @Episode3 => new Episode3Actions(this);
+
+    // LoadingScenes
+    private readonly InputActionMap m_LoadingScenes;
+    private List<ILoadingScenesActions> m_LoadingScenesActionsCallbackInterfaces = new List<ILoadingScenesActions>();
+    private readonly InputAction m_LoadingScenes_PassScreen;
+    public struct LoadingScenesActions
+    {
+        private @PlayerControls m_Wrapper;
+        public LoadingScenesActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @PassScreen => m_Wrapper.m_LoadingScenes_PassScreen;
+        public InputActionMap Get() { return m_Wrapper.m_LoadingScenes; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LoadingScenesActions set) { return set.Get(); }
+        public void AddCallbacks(ILoadingScenesActions instance)
+        {
+            if (instance == null || m_Wrapper.m_LoadingScenesActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_LoadingScenesActionsCallbackInterfaces.Add(instance);
+            @PassScreen.started += instance.OnPassScreen;
+            @PassScreen.performed += instance.OnPassScreen;
+            @PassScreen.canceled += instance.OnPassScreen;
+        }
+
+        private void UnregisterCallbacks(ILoadingScenesActions instance)
+        {
+            @PassScreen.started -= instance.OnPassScreen;
+            @PassScreen.performed -= instance.OnPassScreen;
+            @PassScreen.canceled -= instance.OnPassScreen;
+        }
+
+        public void RemoveCallbacks(ILoadingScenesActions instance)
+        {
+            if (m_Wrapper.m_LoadingScenesActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(ILoadingScenesActions instance)
+        {
+            foreach (var item in m_Wrapper.m_LoadingScenesActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_LoadingScenesActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public LoadingScenesActions @LoadingScenes => new LoadingScenesActions(this);
     private int m_KeyboardSchemeIndex = -1;
     public InputControlScheme KeyboardScheme
     {
@@ -461,5 +538,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IEpisode3Actions
     {
         void OnJump(InputAction.CallbackContext context);
+    }
+    public interface ILoadingScenesActions
+    {
+        void OnPassScreen(InputAction.CallbackContext context);
     }
 }
