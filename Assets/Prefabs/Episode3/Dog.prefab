@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 4657085255039117191}
   - component: {fileID: -8371781004788550836}
   - component: {fileID: 8930663354239317200}
-  - component: {fileID: 7161104693577485857}
   - component: {fileID: 4132202862212259105}
   m_Layer: 0
   m_Name: Dog
@@ -182,23 +181,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!114 &7161104693577485857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2689158784538341019}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d22edae0521d5c4e99e348ceaa71367, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabs: []
-  initialSpawnLocations: []
-  minSpawnRate: 1
-  maxSpawnRate: 5
-  defaultSpawnRate: 5
 --- !u!114 &4132202862212259105
 MonoBehaviour:
   m_ObjectHideFlags: 0
