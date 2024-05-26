@@ -789,7 +789,7 @@ MonoBehaviour:
   - {fileID: 1170393823}
   - {fileID: 1146232763}
   maxHealth: 3
-  currentHealth: 0
+  currentHealth: 3
   immuneTime: 2
   blinkInterval: 0.1
   upForce: 200
@@ -2589,7 +2589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1328357699
 RectTransform:
   m_ObjectHideFlags: 0
