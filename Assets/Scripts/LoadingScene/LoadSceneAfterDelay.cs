@@ -5,9 +5,11 @@ using UnityEngine.InputSystem;
 
 public class LoadSceneAfterDelay : MonoBehaviour
 {
-    public string sceneName = "Episode1";
+    public string sceneName;
     [SerializeField] private InputActionReference pass;
     private bool loadSceneTriggered = false;
+    private bool canLoadScene = false;
+
 
     void OnEnable()
     {
@@ -16,11 +18,13 @@ public class LoadSceneAfterDelay : MonoBehaviour
 
     void OnDisable()
     {
-        pass.action.performed -= _ => loadSceneTriggered = true;
+        pass.action.performed -= _ => loadSceneTriggered = false;
     }
 
     void Start()
     {
+        StartCoroutine(WaitForSeconds(6));
+
         StartCoroutine(LoadAfterDelay(sceneName));
     }
 
@@ -28,7 +32,7 @@ public class LoadSceneAfterDelay : MonoBehaviour
     {
         while (true)
         {
-            if (loadSceneTriggered)
+            if (loadSceneTriggered && canLoadScene)
             {
                 break;
             }
@@ -37,5 +41,10 @@ public class LoadSceneAfterDelay : MonoBehaviour
         }
 
         SceneManager.LoadScene(sceneName);
+    }
+    IEnumerator WaitForSeconds(int seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        canLoadScene = true;
     }
 }
