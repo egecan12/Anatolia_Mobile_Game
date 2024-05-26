@@ -955,16 +955,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 4541550675661841804, guid: 2a64caad24c6a824d9f25b7ba9215c5f, type: 3}
   - {fileID: 972136950631542565, guid: 6017ffaa325cc0a4486285c812f9dc5f, type: 3}
   - {fileID: 3537753546249899381, guid: d8e9af5f9bec91b4e9f517686c9f9b6d, type: 3}
+  - {fileID: 596706561495714391, guid: d15dd58792c27d843b7fce7b23cafd1b, type: 3}
   initialSpawnLocations:
   - {x: 10.5, y: -4.5, z: 0}
   - {x: 10.5, y: -4.5, z: 0}
   - {x: 10.5, y: -4.5, z: 0}
   minSpawnRate: 0
   maxSpawnRate: 0
-  defaultSpawnRate: 5
+  defaultSpawnRate: 2
 --- !u!4 &804373543
 Transform:
   m_ObjectHideFlags: 0
@@ -1254,9 +1254,11 @@ MonoBehaviour:
   - {fileID: 4847400467741592178, guid: fcd97f167ca7bc84eae0dd0c351a467d, type: 3}
   - {fileID: 2416341152208469365, guid: 28913aaa916971e45b25aafec173b30f, type: 3}
   - {fileID: 5543013895634436456, guid: 2ed64c8df0a4bed4cae0c18a821e6803, type: 3}
+  - {fileID: 5887474088947820315, guid: b70129139ef399a4ca202cdbff024832, type: 3}
   initialSpawnLocations:
   - {x: 9.04, y: -3.06, z: 0}
   - {x: 9.74, y: -3.22, z: 0}
+  - {x: 12.4, y: -3.22, z: 0}
   - {x: 12.4, y: -3.22, z: 0}
   - {x: 12.4, y: -3.22, z: 0}
   minSpawnRate: 2

@@ -70,6 +70,8 @@ public class Episode3PlayerController : MonoBehaviour
 
         if (isGameOver)
         {
+            Time.timeScale = 0; // This freezes the game
+            StartCoroutine(RestartSceneAfterDelay(3)); // Restart the scene after 3 seconds
             return;
         }
 
@@ -207,5 +209,11 @@ public class Episode3PlayerController : MonoBehaviour
             // If the player is not attacking, reduce their health
             reduceHealth(1); // replace 1 with the amount of health you want to reduce
         }
+    }
+    IEnumerator RestartSceneAfterDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay); // Wait for the specified delay
+        Time.timeScale = 1; // Unfreeze the game
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
 }

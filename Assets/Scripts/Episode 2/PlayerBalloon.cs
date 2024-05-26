@@ -91,7 +91,6 @@ public class PlayerBalloon : MonoBehaviour
                     rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
                     anim.SetBool("isExploded", true);
 
-
                 }
             }
         }
