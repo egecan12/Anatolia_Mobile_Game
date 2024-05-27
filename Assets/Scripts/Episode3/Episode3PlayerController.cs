@@ -23,11 +23,14 @@ public class Episode3PlayerController : MonoBehaviour
     public float immuneTime = 2f;
     private bool isGrounded;
     public SpriteRenderer sr;
-    private float maxJumpHeight = 8f; // Set this to your desired maximum jump height
+    private float maxJumpHeight = 4f; // Set this to your desired maximum jump height
     private float minJumpHeight = 2f; // Set this to your desired minimum jump height
-    private float maxJumpForce = 50; // Set this to your desired maximum jump force
+    [SerializeField] private float jumpForce; // Set this to your desired maximum jump force
     private float maxPressDuration = 2f; // Set this to your desired maximum press duration
     private float jumpStartY; // The y position of the player when they start jumping
+    private float minJumpForce = 10.0f;
+    private float maxJumpForce = 10.0f;
+    private float jumpForceIncrement = 0.5f;
 
 
     // Start is called before the first frame update
@@ -49,11 +52,9 @@ public class Episode3PlayerController : MonoBehaviour
         {
             if (isGrounded && currentHealth > 0)
             {
-                pressStartTime = Time.time;
                 isJumping = true;
                 isGrounded = false;
-                jumpStartY = rb.position.y;
-                rb.velocity = new Vector2(rb.velocity.x, minJumpHeight);
+                rb.velocity = new Vector2(rb.velocity.x, minJumpForce);
             }
         };
         jump.action.canceled += ctx =>
@@ -67,27 +68,28 @@ public class Episode3PlayerController : MonoBehaviour
     {
         if (isJumping)
         {
-            float pressDuration = Time.time - pressStartTime;
-            if (pressDuration > maxPressDuration)
+            // If the player is still holding the jump button and they haven't reached the maximum height, continue applying an upward force
+            if (rb.velocity.y < maxJumpForce)
             {
-                pressDuration = maxPressDuration;
-                isJumping = false;
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForceIncrement);
             }
-            float targetJumpHeight = minJumpHeight + (pressDuration / maxPressDuration) * (maxJumpHeight - minJumpHeight);
-            if (rb.position.y < targetJumpHeight)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, targetJumpHeight - rb.position.y);
-            }
-            else
+
+            // If the player has reached the maximum height, stop jumping
+            if (rb.position.y >= jumpStartY + maxJumpHeight)
             {
                 isJumping = false;
             }
-            if (rb.position.y > jumpStartY + maxJumpHeight)
-            {
-                rb.position = new Vector2(rb.position.x, jumpStartY + maxJumpHeight);
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                isJumping = false;
-            }
+        }
+
+        if (!isJumping && rb.velocity.y > 0)
+        {
+            // If the player has released the jump button and they are still moving upwards, reduce their upward velocity
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.3f);
+        }
+
+        if (!isJumping && rb.velocity.y <= 0)
+        {
+            isGrounded = true;
         }
 
         if (isGameOver)

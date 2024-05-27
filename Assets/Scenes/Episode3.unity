@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7061816209469747752, guid: db3d52398be36cf418d2ccc23fafb3c7, type: 3}
       propertyPath: m_GravityScale
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7416771726792914740, guid: db3d52398be36cf418d2ccc23fafb3c7, type: 3}
       propertyPath: m_Name
@@ -1434,6 +1434,7 @@ MonoBehaviour:
   jump: {fileID: 5092692366956946889, guid: 5f6c26e59f949164fa35eb333476bde4, type: 3}
   immuneTime: 2
   sr: {fileID: 1193676762}
+  jumpForce: 10
 --- !u!212 &1193676762 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4320549778923905596, guid: db3d52398be36cf418d2ccc23fafb3c7, type: 3}
