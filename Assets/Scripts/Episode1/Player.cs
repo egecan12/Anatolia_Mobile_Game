@@ -45,54 +45,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    /*void Movement()   //Character movement class
-    {
-        bool isRunning = false;
-        if (!isDying)
-        {
-            if (Input.GetKey(KeyCode.A))
-            {
-                transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
-                isRunning = true;
-                sr.flipX = true;
-                // Flip the attack collider
-                if (attackCollider.transform.localScale.x > 0)
-                {
-                    attackCollider.transform.localScale = new Vector3(-attackCollider.transform.localScale.x, attackCollider.transform.localScale.y, attackCollider.transform.localScale.z);
-                }
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
-                isRunning = true;
-                sr.flipX = false;
-                // Flip the attack collider
-                if (attackCollider.transform.localScale.x < 0)
-                {
-                    attackCollider.transform.localScale = new Vector3(-attackCollider.transform.localScale.x, attackCollider.transform.localScale.y, attackCollider.transform.localScale.z);
-                }
-
-            }
-            if (Input.GetKey(KeyCode.W))
-            {
-                if (isGrounded)
-                {
-                    rb.AddForce(Vector2.up * jumpForce);
-                    isGrounded = false;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                StartCoroutine(AttackAnimation());
-            }
-
-
-            anim.SetBool("isRunning", isRunning);
-        }
-
-
-
-    }*/
 
     void OnCollisionEnter2D(Collision2D col)  //Checks characters collisions
     {

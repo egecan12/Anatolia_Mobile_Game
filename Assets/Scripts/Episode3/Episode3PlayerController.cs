@@ -80,6 +80,8 @@ public class Episode3PlayerController : MonoBehaviour
             {
                 isJumping = false;
                 anim.SetBool("isJumping", false);
+                anim.SetBool("isRunning", true);
+
 
             }
         }
