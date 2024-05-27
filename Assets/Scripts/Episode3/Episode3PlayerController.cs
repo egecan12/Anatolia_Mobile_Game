@@ -23,7 +23,7 @@ public class Episode3PlayerController : MonoBehaviour
     public float immuneTime = 2f;
     private bool isGrounded;
     public SpriteRenderer sr;
-    private float maxJumpHeight = 4f; // Set this to your desired maximum jump height
+    private float maxJumpHeight = 0.5f; // Set this to your desired maximum jump height
     private float minJumpHeight = 2f; // Set this to your desired minimum jump height
     [SerializeField] private float jumpForce; // Set this to your desired maximum jump force
     private float maxPressDuration = 2f; // Set this to your desired maximum press duration
@@ -53,7 +53,6 @@ public class Episode3PlayerController : MonoBehaviour
             if (isGrounded && currentHealth > 0)
             {
                 isJumping = true;
-                isGrounded = false;
                 rb.velocity = new Vector2(rb.velocity.x, minJumpForce);
             }
         };
@@ -87,10 +86,7 @@ public class Episode3PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.3f);
         }
 
-        if (!isJumping && rb.velocity.y <= 0)
-        {
-            isGrounded = true;
-        }
+
 
         if (isGameOver)
         {
@@ -209,6 +205,13 @@ public class Episode3PlayerController : MonoBehaviour
         {
             // If the player is not attacking, reduce their health
             reduceHealth(1); // replace 1 with the amount of health you want to reduce
+        }
+    }
+    void OnCollisionExit2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
         }
     }
     IEnumerator RestartSceneAfterDelay(float delay)
