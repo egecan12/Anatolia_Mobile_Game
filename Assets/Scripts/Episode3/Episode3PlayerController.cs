@@ -175,8 +175,9 @@ public class Episode3PlayerController : MonoBehaviour
     void Jump(float pressDuration)
     {    // Calculate the jump force based on the press duration
         Debug.Log(pressDuration);
-        float jumpForce = baseJumpForce + pressDuration * extraJumpForce;      // Apply the jump force
-                                                                               // Ensure that the jump force does not exceed the maximum jump force
+        float jumpForce = baseJumpForce + pressDuration * extraJumpForce;
+        // Apply the jump force
+        // Ensure that the jump force does not exceed the maximum jump force
         jumpForce = Mathf.Min(jumpForce, maxJumpForce);
         rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
         isJumping = true;
