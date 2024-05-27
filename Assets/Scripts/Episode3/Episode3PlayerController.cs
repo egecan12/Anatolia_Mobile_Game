@@ -14,7 +14,8 @@ public class Episode3PlayerController : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
     public Rigidbody2D rb;
-    private bool isJumping;
+    private float pressStartTime;
+    private bool isJumping = false;
     public Animator anim;
     public InputActionReference jump;
     bool isGameOver = false;
@@ -22,12 +23,11 @@ public class Episode3PlayerController : MonoBehaviour
     public float immuneTime = 2f;
     private bool isGrounded;
     public SpriteRenderer sr;
-    private int baseJumpForce = 30;
-    private float extraJumpForce = 50;
-    private float pressStartTime;
-    private float pressDuration;
-
+    private float maxJumpHeight = 8f; // Set this to your desired maximum jump height
+    private float minJumpHeight = 2f; // Set this to your desired minimum jump height
     private float maxJumpForce = 50; // Set this to your desired maximum jump force
+    private float maxPressDuration = 2f; // Set this to your desired maximum press duration
+    private float jumpStartY; // The y position of the player when they start jumping
 
 
     // Start is called before the first frame update
@@ -45,26 +45,48 @@ public class Episode3PlayerController : MonoBehaviour
 
     void Awake()
     {
-        jump.action.started += ctx => pressStartTime = Time.time;
-        jump.action.canceled += ctx =>
+        jump.action.started += ctx =>
         {
-            pressDuration = Time.time - pressStartTime;
             if (isGrounded && currentHealth > 0)
             {
-                Jump(pressDuration);
-                pressDuration = 0;
+                pressStartTime = Time.time;
+                isJumping = true;
+                isGrounded = false;
+                jumpStartY = rb.position.y;
+                rb.velocity = new Vector2(rb.velocity.x, minJumpHeight);
             }
+        };
+        jump.action.canceled += ctx =>
+        {
+            isJumping = false;
         };
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (jump.action.triggered && currentHealth > 0)
+        if (isJumping)
         {
-            if (isGrounded)
+            float pressDuration = Time.time - pressStartTime;
+            if (pressDuration > maxPressDuration)
             {
-                return;
+                pressDuration = maxPressDuration;
+                isJumping = false;
+            }
+            float targetJumpHeight = minJumpHeight + (pressDuration / maxPressDuration) * (maxJumpHeight - minJumpHeight);
+            if (rb.position.y < targetJumpHeight)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, targetJumpHeight - rb.position.y);
+            }
+            else
+            {
+                isJumping = false;
+            }
+            if (rb.position.y > jumpStartY + maxJumpHeight)
+            {
+                rb.position = new Vector2(rb.position.x, jumpStartY + maxJumpHeight);
+                rb.velocity = new Vector2(rb.velocity.x, 0);
+                isJumping = false;
             }
         }
 
@@ -83,16 +105,7 @@ public class Episode3PlayerController : MonoBehaviour
         if (!isImmune)
         {
             currentHealth -= amount;
-            isImmune = true; // PlayerBalloon becomes immune after health is reduced
-
-            // Perform the explosion animation every time when reduceHealth is called
-            // if (anim != null)
-            // {
-            //     anim.SetBool("isDying", true);
-
-            //     // Start a Coroutine to wait for the animation to finish
-            //     StartCoroutine(WaitForDieAnim());
-            // }
+            isImmune = true;
 
             //death
             StartCoroutine(StartImmunity());
@@ -171,21 +184,6 @@ public class Episode3PlayerController : MonoBehaviour
         }
 
     }
-
-    void Jump(float pressDuration)
-    {    // Calculate the jump force based on the press duration
-        Debug.Log(pressDuration);
-        float jumpForce = baseJumpForce + pressDuration * extraJumpForce;
-        // Apply the jump force
-        // Ensure that the jump force does not exceed the maximum jump force
-        jumpForce = Mathf.Min(jumpForce, maxJumpForce);
-        rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
-        isJumping = true;
-        isGrounded = false;
-        anim.SetBool("isJumping", isJumping);
-
-    }
-
 
     public void WaitForAnimation()
     {
