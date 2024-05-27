@@ -973,7 +973,9 @@ MonoBehaviour:
   - {fileID: 972136950631542565, guid: 6017ffaa325cc0a4486285c812f9dc5f, type: 3}
   - {fileID: 3537753546249899381, guid: d8e9af5f9bec91b4e9f517686c9f9b6d, type: 3}
   - {fileID: 596706561495714391, guid: d15dd58792c27d843b7fce7b23cafd1b, type: 3}
+  - {fileID: 7009633866513237402, guid: 429fc55933b93b14eb460c5223dd5f5d, type: 3}
   initialSpawnLocations:
+  - {x: 10.5, y: -4.5, z: 0}
   - {x: 10.5, y: -4.5, z: 0}
   - {x: 10.5, y: -4.5, z: 0}
   - {x: 10.5, y: -4.5, z: 0}
