@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6608271746434663665}
   - component: {fileID: 2226573613478398750}
   - component: {fileID: 411825490637568225}
-  - component: {fileID: 3816464850194770040}
+  - component: {fileID: -7525241707157466241}
   m_Layer: 0
   m_Name: chair
   m_TagString: Enemy
@@ -113,8 +113,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!61 &3816464850194770040
-BoxCollider2D:
+--- !u!68 &-7525241707157466241
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -145,16 +145,19 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.015271187, y: 0.18724513}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.84, y: 10.84}
-    newSize: {x: 10.84, y: 10.84}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 7.266753, y: 10.465509}
+  m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
+  m_Points:
+  - {x: -3.7294676, y: -0.29147097}
+  - {x: -3.7891247, y: 0.84526604}
+  - {x: -1.0876061, y: 2.3485258}
+  - {x: -0.78886306, y: 5.626829}
+  - {x: 3.947788, y: 4.718008}
+  - {x: 3.671174, y: -3.4976547}
+  - {x: 0.74766535, y: -5.30709}
+  - {x: -3.6933014, y: -4.3492937}
+  - {x: -3.790487, y: 0.81611776}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3178515198893754814}
   - component: {fileID: 5145155166579680062}
   - component: {fileID: 8012311464265572323}
-  - component: {fileID: -6541204142422082349}
+  - component: {fileID: -1585370160874815152}
   m_Layer: 0
   m_Name: umbrella22
   m_TagString: Enemy
@@ -113,8 +113,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!61 &-6541204142422082349
-BoxCollider2D:
+--- !u!68 &-1585370160874815152
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,15 +146,24 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.16, y: 8.59}
-    newSize: {x: 7.16, y: 8.59}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 7.16, y: 8.59}
   m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.20414773, y: -4.3791924}
+  - {x: -0.1451199, y: 1.4247109}
+  - {x: -3.4689999, y: 1.8205981}
+  - {x: -3.646508, y: 2.3804784}
+  - {x: -2.2248755, y: 3.379512}
+  - {x: -0.22353846, y: 3.915107}
+  - {x: -0.19893225, y: 4.3911104}
+  - {x: 0.31285074, y: 4.370503}
+  - {x: 0.3765934, y: 3.9599113}
+  - {x: 1.6558726, y: 3.7003522}
+  - {x: 3.581473, y: 2.637636}
+  - {x: 3.559628, y: 1.690921}
+  - {x: 0.317486, y: 1.4930074}
+  - {x: 0.3118266, y: -4.391141}
+  - {x: -0.29078484, y: -4.400471}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0

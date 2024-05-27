@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6699175807152067353}
   - component: {fileID: 6187091963720415671}
   - component: {fileID: 3069337752610933435}
-  - component: {fileID: -1775057264174537316}
+  - component: {fileID: 2571749861720350280}
   m_Layer: 0
   m_Name: Flamingo
   m_TagString: Enemy
@@ -113,8 +113,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 2
---- !u!61 &-1775057264174537316
-BoxCollider2D:
+--- !u!68 &2571749861720350280
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,15 +146,32 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 10.43, y: 9.89}
-    newSize: {x: 10.43, y: 9.89}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 10.43, y: 9.89}
   m_EdgeRadius: 0
+  m_Points:
+  - {x: -4.5080385, y: 1.649576}
+  - {x: -4.9191585, y: 2.1862931}
+  - {x: -4.8692474, y: 2.6336715}
+  - {x: -4.926202, y: 3.6940126}
+  - {x: -3.1584067, y: 4.965247}
+  - {x: -1.2656128, y: 5.0806108}
+  - {x: -0.5279971, y: 4.080603}
+  - {x: -0.5671713, y: 1.6653888}
+  - {x: 2.068275, y: 1.4153396}
+  - {x: 4.5590262, y: 0.15426444}
+  - {x: 5.254339, y: -0.91481036}
+  - {x: 5.259109, y: -2.4992785}
+  - {x: 4.728342, y: -3.680375}
+  - {x: 3.347109, y: -4.5239973}
+  - {x: 1.5071626, y: -5.0199637}
+  - {x: -2.7891603, y: -4.8874936}
+  - {x: -3.600856, y: -4.416184}
+  - {x: -4.4387364, y: -3.8663278}
+  - {x: -4.9340935, y: -3.5823793}
+  - {x: -5.394742, y: -2.5404162}
+  - {x: -5.3420143, y: -0.88782716}
+  - {x: -3.7862172, y: 0.8433131}
+  - {x: -4.516989, y: 1.6908942}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
