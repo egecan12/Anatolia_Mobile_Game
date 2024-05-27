@@ -89,7 +89,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 1.25
-    functionName: WaitForAnimation
+    functionName: ResetJumpAfterAnimation
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
