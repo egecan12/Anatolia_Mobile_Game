@@ -200,7 +200,6 @@ public class Episode3PlayerController : MonoBehaviour
 
         if (col.gameObject.tag == "Ground")
         {
-            Debug.Log("grounded true");
             isGrounded = true;
         }
     }
