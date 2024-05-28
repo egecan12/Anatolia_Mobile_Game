@@ -71,12 +71,18 @@ public class Episode3PlayerController : MonoBehaviour
             if (rb.velocity.y < maxJumpForce)
             {
                 rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + jumpForceIncrement);
+                anim.SetBool("isJumping", true);
+
             }
 
             // If the player has reached the maximum height, stop jumping
             if (rb.position.y >= jumpStartY + maxJumpHeight)
             {
                 isJumping = false;
+                anim.SetBool("isJumping", false);
+                anim.SetBool("isRunning", true);
+
+
             }
         }
 
