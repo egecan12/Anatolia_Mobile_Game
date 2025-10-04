@@ -215,24 +215,24 @@ public class Player : MonoBehaviour
         isInBalloonRide = inRide;
         if (inRide)
         {
-            Debug.Log("🎈 Player is now in balloon ride - ALL COLLISION DISABLED!");
+            // Player balloon ride started
             
             // SET PLAYER SORTING ORDER TO -1 (BACK LAYER)
             if (playerSpriteRenderer != null)
             {
                 playerSpriteRenderer.sortingOrder = -1;
-                Debug.Log("🎈 Player sorting order set to -1 (BACK LAYER)!");
+                // Player moved to back layer
             }
             
             // SCALE PLAYER DOWN TO HALF SIZE (2x SMALLER)
             transform.localScale = originalScale * 0.5f;
-            Debug.Log($"🎈 Player scaled down to 50% (HALF SIZE)! Scale: {transform.localScale}");
+            // Player scaled down for balloon ride
             
             // COMPLETELY DISABLE PLAYER COLLISION
             if (playerCollider != null)
             {
                 playerCollider.enabled = false;
-                Debug.Log("❌ Player collider COMPLETELY DISABLED!");
+                // Player collision disabled
             }
             
             // Disable player's rigidbody physics during balloon ride

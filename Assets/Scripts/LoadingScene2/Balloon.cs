@@ -20,10 +20,14 @@ public class Balloon : MonoBehaviour
 
     void Update()
     {
-        float horizontalMovement = Mathf.PingPong(Time.time * speed, maxDistance * 2) - maxDistance;
+        // Smooth sine wave movement instead of ping-pong for more natural motion
+        float horizontalMovement = maxDistance * Mathf.Sin(Time.time * speed * 0.5f);
         float verticalMovement = maxVerticalDistance * Mathf.Sin(Time.time * verticalSpeed);
         float rotation = maxRotation * Mathf.Sin(Time.time * rotationSpeed);
+        
         transform.position = startPosition + new Vector3(horizontalMovement, verticalMovement, 0);
         transform.rotation = Quaternion.Euler(0, 0, rotation);
+        
+        // Balloon movement update - clean console
     }
 }
