@@ -49,6 +49,26 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
     }
 
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log($"🏃 Player collided with: {collision.gameObject.name} - Tag: {collision.gameObject.tag}");
+        
+        if (collision.gameObject.name.Contains("TicketSeller"))
+        {
+            Debug.LogWarning($"❌ BLOCKING COLLISION with TicketSeller detected! This should NOT happen!");
+        }
+        
+        if (collision.gameObject.name.ToLower().Contains("balloon"))
+        {
+            Debug.LogWarning($"❌ BLOCKING COLLISION with BALLOON detected! GameObject: {collision.gameObject.name}");
+        }
+        
+        if (collision.gameObject.name.ToLower().Contains("playerballoon"))
+        {
+            Debug.LogWarning($"❌ BLOCKING COLLISION with PLAYER BALLOON detected! This should NOT happen!");
+        }
+    }
+
     private void OnEnable()
     {
         attack.action.started += Attack;

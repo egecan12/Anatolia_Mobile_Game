@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI coinCountText; // Assign your TextMeshProUGUI object in the Unity editor
+    public Button continueButton; // Continue button reference
     public float speed;
     public float jumpForce;
     public Animator anim;
@@ -26,6 +27,10 @@ public class Player : MonoBehaviour
     public int coinCount = 0;
     private bool isDying = false;
     private Vector3 startPosition;
+    private bool isInBalloonRide = false; // Track if player is in balloon ride
+    private Collider2D playerCollider; // Store player's collider reference
+    private SpriteRenderer playerSpriteRenderer; // Store player's sprite renderer reference
+    private Vector3 originalScale; // Store original player scale
 
     void Start()
     {
@@ -33,6 +38,26 @@ public class Player : MonoBehaviour
         isGrounded = true;
         currentHealth = maxHealth;
         gameOverText.gameObject.SetActive(false); // Hide the Game Over text
+        if (continueButton != null)
+            continueButton.gameObject.SetActive(false); // Hide the Continue button
+            
+        // Get Player's collider for balloon ride collision management
+        playerCollider = GetComponent<Collider2D>();
+        if (playerCollider != null)
+        {
+            Debug.Log($"🎮 Player collider found: {playerCollider.GetType()}");
+        }
+        
+        // Get Player's sprite renderer for sorting order management
+        playerSpriteRenderer = sr; // Use the existing sr reference
+        if (playerSpriteRenderer != null)
+        {
+            Debug.Log($"🎮 Player sprite renderer found, current sorting order: {playerSpriteRenderer.sortingOrder}");
+        }
+        
+        // Store original player scale for balloon ride
+        originalScale = transform.localScale;
+        Debug.Log($"🎮 Player original scale stored: {originalScale}");
     }
 
     void Update()
@@ -72,7 +97,10 @@ public class Player : MonoBehaviour
         isGameOver = true;
         gameOverText.text = "Game Over";
         gameOverText.gameObject.SetActive(true); // Show the Game Over text
-
+        
+        // Show Continue button
+        if (continueButton != null)
+            continueButton.gameObject.SetActive(true);
     }
     void checkHealthStatus()
     {
@@ -119,7 +147,7 @@ public class Player : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, transform.position.y - moveDownAmount, transform.position.z);
 
                 StartCoroutine(GameOverTextAfterDelay(1));
-                StartCoroutine(RestartGameAfterDelay(5)); // Wait for 5 seconds and restart the game
+                // Game will continue after clicking Continue button, no automatic restart
             }
 
         }
@@ -173,6 +201,76 @@ public class Player : MonoBehaviour
         coinCount++;
         Debug.Log(coinCount);
         coinCountText.text = "" + coinCount; // Update the UI Text element
+    }
+
+    public void OnContinueClick()
+    {
+        // Simply restart the entire scene - cleaner and more reliable
+        Debug.Log("Restarting scene... Player will start with 3 lives.");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
+    public void SetBalloonRideStatus(bool inRide)
+    {
+        isInBalloonRide = inRide;
+        if (inRide)
+        {
+            Debug.Log("🎈 Player is now in balloon ride - ALL COLLISION DISABLED!");
+            
+            // SET PLAYER SORTING ORDER TO -1 (BACK LAYER)
+            if (playerSpriteRenderer != null)
+            {
+                playerSpriteRenderer.sortingOrder = -1;
+                Debug.Log("🎈 Player sorting order set to -1 (BACK LAYER)!");
+            }
+            
+            // SCALE PLAYER DOWN TO HALF SIZE (2x SMALLER)
+            transform.localScale = originalScale * 0.5f;
+            Debug.Log($"🎈 Player scaled down to 50% (HALF SIZE)! Scale: {transform.localScale}");
+            
+            // COMPLETELY DISABLE PLAYER COLLISION
+            if (playerCollider != null)
+            {
+                playerCollider.enabled = false;
+                Debug.Log("❌ Player collider COMPLETELY DISABLED!");
+            }
+            
+            // Disable player's rigidbody physics during balloon ride
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+                Debug.Log("🎈 Player rigidbody set to kinematic during balloon ride!");
+            }
+        }
+        else
+        {
+            Debug.Log("🎈 Player balloon ride ended - collision re-enabled!");
+            
+            // RESTORE PLAYER SORTING ORDER TO NORMAL
+            if (playerSpriteRenderer != null)
+            {
+                playerSpriteRenderer.sortingOrder = 0; // Normal layer
+                Debug.Log("🎈 Player sorting order restored to 0 (NORMAL LAYER)!");
+            }
+            
+            // RESTORE PLAYER SCALE TO NORMAL SIZE
+            transform.localScale = originalScale;
+            Debug.Log($"🎈 Player scale restored to original size! Scale: {transform.localScale}");
+            
+            // Re-enable player's collision (though this won't happen since scene changes)
+            if (playerCollider != null)
+            {
+                playerCollider.enabled = true;
+                Debug.Log("✅ Player collider re-enabled!");
+            }
+            
+            // Re-enable player's rigidbody physics
+            if (rb != null)
+            {
+                rb.isKinematic = false;
+                Debug.Log("🎈 Player rigidbody set to non-kinematic after balloon ride!");
+            }
+        }
     }
 
 }
