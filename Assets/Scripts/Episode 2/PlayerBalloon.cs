@@ -12,7 +12,7 @@ public class PlayerBalloon : MonoBehaviour
     private bool isExploding = false; // Define isExploding
 
     bool isImmune = false;
-    public float immuneTime = 2f; // The duration of the immunity and blinking effect
+    public float immuneTime = 3f; // The duration of the immunity and blinking effect (3 seconds)
     public float blinkInterval = 0.1f; // The interval between each blink
     public float upForce = 200f; // The upward force
     private Rigidbody2D rb; // The balloon's rigidbody
@@ -21,6 +21,8 @@ public class PlayerBalloon : MonoBehaviour
     private bool isRising;
     private GiantBird giantBird;
     public InputActionReference jump;
+    private SpriteRenderer balloonRenderer; // Balloon sprite renderer for blink effect
+    private bool isBlinking = false;
 
 
     // Start is called before the first frame update
@@ -29,6 +31,7 @@ public class PlayerBalloon : MonoBehaviour
         // Get the rigidbody component
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>(); // Get the Animator component
+        balloonRenderer = GetComponent<SpriteRenderer>(); // Get the SpriteRenderer for blink effect
         startPosition = transform.position; // Set the start position
         currentHealth = maxHealth;
     }
@@ -70,6 +73,9 @@ public class PlayerBalloon : MonoBehaviour
         {
             currentHealth -= amount;
             isImmune = true; // PlayerBalloon becomes immune after health is reduced
+            
+            // Start blink effect immediately when health is reduced
+            StartCoroutine(BlinkBalloonEffect());
 
             //Perform the explosion animation every time when reduceHealth is called
             if (anim != null)
@@ -103,11 +109,39 @@ public class PlayerBalloon : MonoBehaviour
         yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
         // Set isExploding to false
         anim.SetBool("isExploding", false);
-        isImmune = false;
+        // Immunity will be handled by BlinkBalloonEffect coroutine
 
 
         // Change the sprite of the object
 
+    }
+
+    // Blink effect coroutine for 3 seconds immunity period
+    IEnumerator BlinkBalloonEffect()
+    {
+        isBlinking = true;
+        Color originalColor = balloonRenderer.color;
+        
+        // Blink for the duration of immunity
+        float blinkDuration = immuneTime;
+        float blinkTimer = 0f;
+        
+        while (blinkTimer < blinkDuration)
+        {
+            // Toggle visibility
+            balloonRenderer.enabled = !balloonRenderer.enabled;
+            
+            // Wait for blink interval
+            yield return new WaitForSeconds(blinkInterval);
+            
+            blinkTimer += blinkInterval;
+        }
+        
+        // Ensure balloon is visible at the end
+        balloonRenderer.enabled = true;
+        balloonRenderer.color = originalColor;
+        isBlinking = false;
+        isImmune = false; // End immunity period
     }
 
     void checkHealthStatus()
