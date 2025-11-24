@@ -18,6 +18,14 @@ public class BirdSpawner : MonoBehaviour
     // Add a boolean to track whether the giant bird has been spawned
     private int giantBirdCount = 0;
     // Find the text with the tag "3hourstext"
+    
+    // Public method to reset counters (called during restart)
+    public void ResetCounters()
+    {
+        birdCount = 0;
+        giantBirdCount = 0;
+        Debug.Log("🔄 BirdSpawner counters sıfırlandı!");
+    }
 
     void Start()
     {

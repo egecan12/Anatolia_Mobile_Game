@@ -197,11 +197,18 @@ public class Episode3PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)  //Checks characters collisions
     {
-
         if (col.gameObject.tag == "Ground")
         {
-            Debug.Log("grounded true");
-            isGrounded = true;
+            // Check if the collision is from above (player landing on ground)
+            foreach (ContactPoint2D contact in col.contacts)
+            {
+                if (contact.normal.y > 0.5f) // Normal pointing upward means ground is below
+                {
+                    Debug.Log("grounded true");
+                    isGrounded = true;
+                    break;
+                }
+            }
         }
     }
 
@@ -217,6 +224,7 @@ public class Episode3PlayerController : MonoBehaviour
     {
         if (col.gameObject.tag == "Ground")
         {
+            Debug.Log("grounded false - player left ground");
             isGrounded = false;
         }
     }
@@ -225,5 +233,19 @@ public class Episode3PlayerController : MonoBehaviour
         yield return new WaitForSecondsRealtime(delay); // Wait for the specified delay
         Time.timeScale = 1; // Unfreeze the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+    }
+
+    // Animation Event method for HomelessJumpAnim
+    public void ResetJumpAfterAnimation()
+    {
+        if (anim != null)
+        {
+            anim.SetBool("isJumping", false);
+            Debug.Log("ResetJumpAfterAnimation called in Episode3 - isJumping set to false");
+        }
+        else
+        {
+            Debug.LogWarning("ResetJumpAfterAnimation called in Episode3 but anim is null!");
+        }
     }
 }

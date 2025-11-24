@@ -13,16 +13,10 @@ public class LoadSceneAfterDelay2 : MonoBehaviour
 
     IEnumerator LoadAfterDelay(string sceneName)
     {
-        while (true)
-        {
-            if (Input.anyKeyDown)
-            {
-                break;
-            }
-
-            yield return null;
-        }
-
+        // Wait for 2 seconds then automatically load the scene
+        yield return new WaitForSeconds(2f);
+        
+        Debug.Log($"🔄 Loading scene'den {sceneName} sahnesine geçiliyor...");
         SceneManager.LoadScene(sceneName);
     }
 }

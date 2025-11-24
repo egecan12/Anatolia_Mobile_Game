@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class EnemyHomeless : MonoBehaviour
 {
@@ -183,6 +184,15 @@ public class EnemyHomeless : MonoBehaviour
         if (player != null && Vector3.Distance(transform.position, player.transform.position) < attackRange)
         {
             player.reduceHealth(1);
+        }
+    }
+
+    // Animation Event method for HomelessJumpAnim
+    public void ResetJumpAfterAnimation()
+    {
+        if (animator != null)
+        {
+            animator.SetBool("isJumping", false);
         }
     }
 }

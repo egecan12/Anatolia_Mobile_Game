@@ -273,4 +273,18 @@ public class Player : MonoBehaviour
         }
     }
 
+    // Animation Event method for HomelessJumpAnim
+    public void ResetJumpAfterAnimation()
+    {
+        if (anim != null)
+        {
+            anim.SetBool("isJumping", false);
+            Debug.Log("ResetJumpAfterAnimation called - isJumping set to false");
+        }
+        else
+        {
+            Debug.LogWarning("ResetJumpAfterAnimation called but anim is null!");
+        }
+    }
+
 }
