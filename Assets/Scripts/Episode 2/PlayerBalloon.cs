@@ -234,12 +234,19 @@ public class PlayerBalloon : MonoBehaviour
         }
         if (other.gameObject.tag == "GiantBird")
         {
-            // If the player is not attacking, reduce their health
-            reduceHealth(3); // replace 3 with the amount of health you want to reduce
+            Debug.Log("🦅 GiantBird ile çarpışma algılandı! Animasyon ve sahne geçişi başlatılıyor...");
 
-            // Start the LoadSceneAfterDelay coroutine
+            // 1. Patlama animasyonunu başlat
+            if (anim != null)
+            {
+                anim.SetBool("isExploding", true);
+                // Animasyon bittikten sonra state'i temizlemek için
+                StartCoroutine(WaitForExplosionAnimation());
+            }
+
+            // 2. Hasar almadan ve ölmeden doğrudan sahne geçişini başlat
+            // 2 saniyelik gecikme, patlama animasyonunun görünmesi için yeterli olacaktır.
             StartCoroutine(LoadSceneAfterDelay(2));
-
         }
 
     }
